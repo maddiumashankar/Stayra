@@ -1,0 +1,348 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900" width="100%" height="100%">
+
+<defs>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap');
+        * { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .shadow { filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08)); }
+        .shadow-lg { filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.12)); }
+    </style>
+    
+    <filter id="card-shadow" x="-10%" y="-10%" width="120%" height="120%">
+        <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.06" flood-color="#0F172A"/>
+    </filter>
+
+    <marker id="arrow-indigo" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#6366F1"/>
+    </marker>
+    <marker id="arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10B981"/>
+    </marker>
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#F59E0B"/>
+    </marker>
+    <marker id="arrow-rose" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#F43F5E"/>
+    </marker>
+    <marker id="arrow-slate" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#64748B"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#0284C7"/>
+    </marker>
+
+    <!-- Gradients -->
+    <linearGradient id="bg-canvas" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#F8FAFC"/>
+        <stop offset="100%" stop-color="#F1F5F9"/>
+    </linearGradient>
+    <linearGradient id="grad-indigo" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#6366F1"/>
+        <stop offset="100%" stop-color="#4F46E5"/>
+    </linearGradient>
+    <linearGradient id="grad-emerald" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#10B981"/>
+        <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="grad-amber" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#F59E0B"/>
+        <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <linearGradient id="grad-rose" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#F43F5E"/>
+        <stop offset="100%" stop-color="#E11D48"/>
+    </linearGradient>
+    <linearGradient id="grad-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#0EA5E9"/>
+        <stop offset="100%" stop-color="#0284C7"/>
+    </linearGradient>
+    <linearGradient id="grad-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#A855F7"/>
+        <stop offset="100%" stop-color="#7E22CE"/>
+    </linearGradient>
+    <linearGradient id="grad-dark" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#1E293B"/>
+        <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+</defs>
+
+    <!-- Background Canvas -->
+    <rect width="1400" height="900" fill="url(#bg-canvas)" rx="16"/>
+    <rect x="20" y="20" width="1360" height="860" fill="none" stroke="#E2E8F0" stroke-width="1.5" rx="12"/>
+
+    <!-- Header -->
+    <rect x="40" y="40" width="1320" height="60" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" rx="8" filter="url(#card-shadow)"/>
+    <circle cx="70" cy="70" r="16" fill="url(#grad-indigo)"/>
+    <text x="70" y="75" fill="#FFFFFF" font-weight="800" font-size="14" text-anchor="middle">S</text>
+    <text x="100" y="68" fill="#0F172A" font-weight="700" font-size="18">Stayra — High-Level System Architecture &amp; Component Topology</text>
+    <text x="100" y="86" fill="#64748B" font-weight="500" font-size="13">C4 Container Architecture: Mobile Clients, NestJS Modular Monolith, Data Stores &amp; Async Workers</text>
+    <rect x="1220" y="55" width="120" height="30" fill="#EEF2FF" rx="6"/>
+    <text x="1280" y="74" fill="#4F46E5" font-weight="600" font-size="12" text-anchor="middle">VERSION 1.0</text>
+
+    <!-- SECTION 1: Client Application Layer -->
+    <rect x="40" y="125" width="340" height="735" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" rx="10" filter="url(#card-shadow)"/>
+    <path d="M 40 135 Q 40 125 50 125 L 370 125 Q 380 125 380 135 L 380 165 L 40 165 Z" fill="#F8FAFC"/>
+    <text x="60" y="150" fill="#0F172A" font-weight="700" font-size="15">1. Client Application Layer</text>
+    <text x="360" y="150" fill="#6366F1" font-weight="600" font-size="12" text-anchor="end">React Native / Expo</text>
+
+    <!-- Client Card 1: Resident Mobile -->
+    <g transform="translate(60, 185)">
+        <rect width="300" height="130" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" rx="8"/>
+        <rect x="12" y="12" width="28" height="28" fill="#EEF2FF" rx="6"/>
+        <text x="26" y="31" fill="#6366F1" font-size="14" text-anchor="middle">📱</text>
+        <text x="50" y="26" fill="#0F172A" font-weight="700" font-size="14">Resident Mobile App</text>
+        <text x="50" y="42" fill="#64748B" font-size="11">React Native (Expo Router v3)</text>
+        <line x1="12" y1="52" x2="288" y2="52" stroke="#E2E8F0" stroke-width="1"/>
+        <text x="16" y="72" fill="#334155" font-size="11">• PostGIS Discovery &amp; Natural Search</text>
+        <text x="16" y="90" fill="#334155" font-size="11">• Digital Tenancy &amp; Agreement Signing</text>
+        <text x="16" y="108" fill="#334155" font-size="11">• Razorpay Checkout &amp; Ticket Tracking</text>
+    </g>
+
+    <!-- Client Card 2: Owner Mobile -->
+    <g transform="translate(60, 335)">
+        <rect width="300" height="130" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" rx="8"/>
+        <rect x="12" y="12" width="28" height="28" fill="#ECFDF5" rx="6"/>
+        <text x="26" y="31" fill="#10B981" font-size="14" text-anchor="middle">🏢</text>
+        <text x="50" y="26" fill="#0F172A" font-weight="700" font-size="14">Owner Mobile &amp; Portal</text>
+        <text x="50" y="42" fill="#64748B" font-size="11">Expo Router + Web Responsive</text>
+        <line x1="12" y1="52" x2="288" y2="52" stroke="#E2E8F0" stroke-width="1"/>
+        <text x="16" y="72" fill="#334155" font-size="11">• Property &amp; Room Bed Grid Management</text>
+        <text x="16" y="90" fill="#334155" font-size="11">• Request Approvals &amp; Tenancy Activation</text>
+        <text x="16" y="108" fill="#334155" font-size="11">• Billing Runs &amp; Ticket Staff Assignment</text>
+    </g>
+
+    <!-- Client Card 3: Staff App -->
+    <g transform="translate(60, 485)">
+        <rect width="300" height="110" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" rx="8"/>
+        <rect x="12" y="12" width="28" height="28" fill="#FFFBEB" rx="6"/>
+        <text x="26" y="31" fill="#F59E0B" font-size="14" text-anchor="middle">🔧</text>
+        <text x="50" y="26" fill="#0F172A" font-weight="700" font-size="14">Staff Operations App</text>
+        <text x="50" y="42" fill="#64748B" font-size="11">Lightweight Mobile Flow</text>
+        <line x1="12" y1="52" x2="288" y2="52" stroke="#E2E8F0" stroke-width="1"/>
+        <text x="16" y="72" fill="#334155" font-size="11">• Assigned Ticket Kanban Queue</text>
+        <text x="16" y="90" fill="#334155" font-size="11">• Upload Resolution Photos &amp; Proofs</text>
+    </g>
+
+    <!-- Client Card 4: Shared Mobile Architecture -->
+    <g transform="translate(60, 615)">
+        <rect width="300" height="225" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1" rx="8"/>
+        <text x="16" y="26" fill="#0F172A" font-weight="700" font-size="13">Mobile Architecture Foundations</text>
+        <rect x="16" y="40" width="125" height="36" fill="#FFFFFF" stroke="#E2E8F0" rx="4"/>
+        <text x="78" y="62" fill="#4F46E5" font-weight="600" font-size="11" text-anchor="middle">TanStack Query v5</text>
+
+        <rect x="155" y="40" width="125" height="36" fill="#FFFFFF" stroke="#E2E8F0" rx="4"/>
+        <text x="217" y="62" fill="#059669" font-weight="600" font-size="11" text-anchor="middle">Zustand Stores</text>
+
+        <rect x="16" y="85" width="125" height="36" fill="#FFFFFF" stroke="#E2E8F0" rx="4"/>
+        <text x="78" y="107" fill="#D97706" font-weight="600" font-size="11" text-anchor="middle">Zod Form Schemas</text>
+
+        <rect x="155" y="85" width="125" height="36" fill="#FFFFFF" stroke="#E2E8F0" rx="4"/>
+        <text x="217" y="107" fill="#0284C7" font-weight="600" font-size="11" text-anchor="middle">Expo SecureStore</text>
+
+        <rect x="16" y="130" width="264" height="75" fill="#FFFFFF" stroke="#E2E8F0" rx="4"/>
+        <text x="26" y="152" fill="#0F172A" font-weight="600" font-size="11">Network &amp; Security Layer:</text>
+        <text x="26" y="172" fill="#64748B" font-size="10">• Axios with JWT Interceptor + Mutex Refresh</text>
+        <text x="26" y="190" fill="#64748B" font-size="10">• Offline Mutation Queue &amp; Optimistic UI</text>
+    </g>
+
+    <!-- SECTION 2: API Gateway & Modular Monolith -->
+    <rect x="415" y="125" width="570" height="735" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" rx="10" filter="url(#card-shadow)"/>
+    <path d="M 415 135 Q 415 125 425 125 L 975 125 Q 985 125 985 135 L 985 165 L 415 165 Z" fill="#F8FAFC"/>
+    <text x="435" y="150" fill="#0F172A" font-weight="700" font-size="15">2. Backend Modular Monolith (NestJS / Node.js)</text>
+    <text x="965" y="150" fill="#10B981" font-weight="600" font-size="12" text-anchor="end">Clean Architecture</text>
+
+    <!-- Ingress Layer inside Backend -->
+    <g transform="translate(435, 185)">
+        <rect width="530" height="55" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" rx="6"/>
+        <text x="16" y="24" fill="#0F172A" font-weight="700" font-size="12">API Gateway &amp; Middleware Boundary</text>
+        <text x="16" y="42" fill="#64748B" font-size="11">Rate Limiting (Redis) • JWT AuthGuard • RBAC Guard • PropertyOwnershipGuard</text>
+    </g>
+
+    <!-- Bounded Context Modules Grid -->
+    <g transform="translate(435, 255)">
+        <!-- Module 1: Auth -->
+        <rect x="0" y="0" width="165" height="90" fill="#FFFFFF" stroke="#6366F1" stroke-width="1.5" rx="6"/>
+        <text x="12" y="22" fill="#4F46E5" font-weight="700" font-size="12">Auth &amp; Users</text>
+        <text x="12" y="42" fill="#64748B" font-size="10">• Phone OTP &amp; JWT</text>
+        <text x="12" y="58" fill="#64748B" font-size="10">• Stayra Resident ID</text>
+        <text x="12" y="74" fill="#64748B" font-size="10">• KYC Verification</text>
+
+        <!-- Module 2: Property & Inventory -->
+        <rect x="180" y="0" width="170" height="90" fill="#FFFFFF" stroke="#0EA5E9" stroke-width="1.5" rx="6"/>
+        <text x="192" y="22" fill="#0284C7" font-weight="700" font-size="12">Property &amp; Inventory</text>
+        <text x="192" y="42" fill="#64748B" font-size="10">• PostGIS Spatial Index</text>
+        <text x="192" y="58" fill="#64748B" font-size="10">• Room &amp; Bed Allocations</text>
+        <text x="192" y="74" fill="#64748B" font-size="10">• Amenities &amp; Food Menus</text>
+
+        <!-- Module 3: Tenancy -->
+        <rect x="365" y="0" width="165" height="90" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" rx="6"/>
+        <text x="377" y="22" fill="#059669" font-weight="700" font-size="12">Tenancy Lifecycle</text>
+        <text x="377" y="42" fill="#64748B" font-size="10">• Request &amp; Approve</text>
+        <text x="377" y="58" fill="#64748B" font-size="10">• Digital Tenancy Agmt</text>
+        <text x="377" y="74" fill="#64748B" font-size="10">• 30-Day Move-Out Notice</text>
+
+        <!-- Module 4: Billing -->
+        <rect x="0" y="105" width="165" height="95" fill="#FFFFFF" stroke="#F59E0B" stroke-width="1.5" rx="6"/>
+        <text x="12" y="127" fill="#D97706" font-weight="700" font-size="12">Billing &amp; Metering</text>
+        <text x="12" y="147" fill="#64748B" font-size="10">• Monthly Bill Scheduler</text>
+        <text x="12" y="163" fill="#64748B" font-size="10">• Sub-meter Electricity</text>
+        <text x="12" y="179" fill="#64748B" font-size="10">• Deduct SLA Credits</text>
+
+        <!-- Module 5: Double-Entry Ledger -->
+        <rect x="180" y="105" width="170" height="95" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="1.5" rx="6"/>
+        <text x="192" y="127" fill="#7C3AED" font-weight="700" font-size="12">Financial Ledger</text>
+        <text x="192" y="147" fill="#64748B" font-size="10">• Double-Entry Entries</text>
+        <text x="192" y="163" fill="#64748B" font-size="10">• Idempotent Postings</text>
+        <text x="192" y="179" fill="#64748B" font-size="10">• Audit Trail Ledger</text>
+
+        <!-- Module 6: Payments -->
+        <rect x="365" y="105" width="165" height="95" fill="#FFFFFF" stroke="#059669" stroke-width="1.5" rx="6"/>
+        <text x="377" y="127" fill="#047857" font-weight="700" font-size="12">Payments &amp; Escrow</text>
+        <text x="377" y="147" fill="#64748B" font-size="10">• Razorpay Orders</text>
+        <text x="377" y="163" fill="#64748B" font-size="10">• Webhook HMAC Verify</text>
+        <text x="377" y="179" fill="#64748B" font-size="10">• Security Deposit Hold</text>
+
+        <!-- Module 7: Complaints -->
+        <rect x="0" y="215" width="165" height="95" fill="#FFFFFF" stroke="#F43F5E" stroke-width="1.5" rx="6"/>
+        <text x="12" y="237" fill="#E11D48" font-weight="700" font-size="12">Complaints &amp; Tickets</text>
+        <text x="12" y="257" fill="#64748B" font-size="10">• Multi-modal Media</text>
+        <text x="12" y="273" fill="#64748B" font-size="10">• Staff Task Assignment</text>
+        <text x="12" y="289" fill="#64748B" font-size="10">• Resolution Workflows</text>
+
+        <!-- Module 8: SLA & Compensation Engine -->
+        <rect x="180" y="215" width="170" height="95" fill="#FFFFFF" stroke="#EF4444" stroke-width="1.5" rx="6"/>
+        <text x="192" y="237" fill="#B91C1C" font-weight="700" font-size="12">SLA Compensation</text>
+        <text x="192" y="257" fill="#64748B" font-size="10">• Policy Rules Evaluator</text>
+        <text x="192" y="273" fill="#64748B" font-size="10">• Auto Rent Credit Calc</text>
+        <text x="192" y="289" fill="#64748B" font-size="10">• SLA Breach Monitor</text>
+
+        <!-- Module 9: Feedback & Reputation -->
+        <rect x="365" y="215" width="165" height="95" fill="#FFFFFF" stroke="#D97706" stroke-width="1.5" rx="6"/>
+        <text x="377" y="237" fill="#B45309" font-weight="700" font-size="12">Feedback &amp; Rating</text>
+        <text x="377" y="257" fill="#64748B" font-size="10">• Post-ticket Surveys</text>
+        <text x="377" y="273" fill="#64748B" font-size="10">• Living PG Reputation</text>
+        <text x="377" y="289" fill="#64748B" font-size="10">• SLA Adherence Index</text>
+    </g>
+
+    <!-- Sub-Section: AI Gateway & Specialized Agents -->
+    <g transform="translate(435, 595)">
+        <rect width="530" height="245" fill="#F8FAFC" stroke="#6366F1" stroke-width="1.5" rx="8"/>
+        <rect x="16" y="12" width="500" height="32" fill="#EEF2FF" rx="4"/>
+        <text x="26" y="33" fill="#4F46E5" font-weight="700" font-size="13">STAYRA AI GATEWAY &amp; TOOL CALLING ORCHESTRATOR</text>
+        <text x="500" y="33" fill="#6366F1" font-weight="600" font-size="11" text-anchor="end">Deterministic Safety Guardrail Layer</text>
+
+        <!-- 4 Specialized Agents Cards -->
+        <rect x="16" y="55" width="115" height="85" fill="#FFFFFF" stroke="#CBD5E1" rx="6"/>
+        <text x="73" y="75" fill="#0F172A" font-weight="700" font-size="11" text-anchor="middle">Recommendation</text>
+        <text x="73" y="90" fill="#6366F1" font-size="9" text-anchor="middle">Natural Language Search</text>
+        <text x="73" y="105" fill="#64748B" font-size="9" text-anchor="middle">• PostGIS Geo Filters</text>
+        <text x="73" y="118" fill="#64748B" font-size="9" text-anchor="middle">• Multi-factor Ranks</text>
+
+        <rect x="143" y="55" width="115" height="85" fill="#FFFFFF" stroke="#CBD5E1" rx="6"/>
+        <text x="200" y="75" fill="#0F172A" font-weight="700" font-size="11" text-anchor="middle">Complaint Triage</text>
+        <text x="200" y="90" fill="#E11D48" font-size="9" text-anchor="middle">Classification Agent</text>
+        <text x="200" y="105" fill="#64748B" font-size="9" text-anchor="middle">• Severity Detection</text>
+        <text x="200" y="118" fill="#64748B" font-size="9" text-anchor="middle">• SLA Mapping</text>
+
+        <rect x="270" y="55" width="115" height="85" fill="#FFFFFF" stroke="#CBD5E1" rx="6"/>
+        <text x="327" y="75" fill="#0F172A" font-weight="700" font-size="11" text-anchor="middle">Billing Anomaly</text>
+        <text x="327" y="90" fill="#D97706" font-size="9" text-anchor="middle">Audit &amp; Spike Agent</text>
+        <text x="327" y="105" fill="#64748B" font-size="9" text-anchor="middle">• Meter Spike Detect</text>
+        <text x="327" y="118" fill="#64748B" font-size="9" text-anchor="middle">• Duplicate Check</text>
+
+        <rect x="398" y="55" width="118" height="85" fill="#FFFFFF" stroke="#CBD5E1" rx="6"/>
+        <text x="457" y="75" fill="#0F172A" font-weight="700" font-size="11" text-anchor="middle">Owner Copilot</text>
+        <text x="457" y="90" fill="#059669" font-size="9" text-anchor="middle">Analytics Agent</text>
+        <text x="457" y="105" fill="#64748B" font-size="9" text-anchor="middle">• Occupancy Trends</text>
+        <text x="457" y="118" fill="#64748B" font-size="9" text-anchor="middle">• Recurring Issues</text>
+
+        <!-- Guardrail Banner -->
+        <rect x="16" y="150" width="500" height="80" fill="#FFFFFF" stroke="#E2E8F0" rx="6"/>
+        <text x="26" y="172" fill="#0F172A" font-weight="700" font-size="11">Core AI Architectural Invariants:</text>
+        <text x="26" y="190" fill="#DC2626" font-weight="600" font-size="10">🚫 Zero Direct Database Mutation:</text>
+        <text x="210" y="190" fill="#64748B" font-size="10">AI agents are strictly read-only or draft-only.</text>
+        <text x="26" y="208" fill="#059669" font-weight="600" font-size="10">✓ Deterministic Execution:</text>
+        <text x="175" y="208" fill="#64748B" font-size="10">All monetary ledger debits/credits executed via verified code.</text>
+    </g>
+
+    <!-- SECTION 3: Data Stores & Async Workers -->
+    <rect x="1015" y="125" width="345" height="735" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" rx="10" filter="url(#card-shadow)"/>
+    <path d="M 1015 135 Q 1015 125 1025 125 L 1350 125 Q 1360 125 1360 135 L 1360 165 L 1015 165 Z" fill="#F8FAFC"/>
+    <text x="1035" y="150" fill="#0F172A" font-weight="700" font-size="15">3. Data Stores &amp; Background Workers</text>
+
+    <!-- Data Store 1: PostgreSQL -->
+    <g transform="translate(1035, 185)">
+        <rect width="305" height="135" fill="#F8FAFC" stroke="#0284C7" stroke-width="1.5" rx="8"/>
+        <rect x="12" y="12" width="28" height="28" fill="#E0F2FE" rx="6"/>
+        <text x="26" y="31" fill="#0284C7" font-size="14" text-anchor="middle">🗄️</text>
+        <text x="50" y="26" fill="#0F172A" font-weight="700" font-size="14">PostgreSQL 16 Enterprise</text>
+        <text x="50" y="42" fill="#64748B" font-size="11">ACID Relational Core</text>
+        <line x1="12" y1="52" x2="293" y2="52" stroke="#E2E8F0" stroke-width="1"/>
+        <text x="16" y="72" fill="#334155" font-size="11">• <tspan font-weight="600">PostGIS:</tspan> Spatial indices for radius discovery</text>
+        <text x="16" y="90" fill="#334155" font-size="11">• <tspan font-weight="600">pgvector:</tspan> Property semantic embeddings</text>
+        <text x="16" y="108" fill="#334155" font-size="11">• <tspan font-weight="600">Immutable Ledger:</tspan> Double-entry ledger entries</text>
+    </g>
+
+    <!-- Data Store 2: Redis -->
+    <g transform="translate(1035, 330)">
+        <rect width="305" height="110" fill="#F8FAFC" stroke="#DC2626" stroke-width="1.5" rx="8"/>
+        <rect x="12" y="12" width="28" height="28" fill="#FEE2E2" rx="6"/>
+        <text x="26" y="31" fill="#DC2626" font-size="14" text-anchor="middle">⚡</text>
+        <text x="50" y="26" fill="#0F172A" font-weight="700" font-size="14">Redis 7.2 Cluster</text>
+        <text x="50" y="42" fill="#64748B" font-size="11">Cache &amp; Distributed Engine</text>
+        <line x1="12" y1="52" x2="293" y2="52" stroke="#E2E8F0" stroke-width="1"/>
+        <text x="16" y="72" fill="#334155" font-size="11">• High-speed Session &amp; OTP Throttle Cache</text>
+        <text x="16" y="90" fill="#334155" font-size="11">• BullMQ Job Queues &amp; Distributed Mutex Locks</text>
+    </g>
+
+    <!-- Data Store 3: Object Storage S3 -->
+    <g transform="translate(1035, 450)">
+        <rect width="305" height="95" fill="#F8FAFC" stroke="#D97706" stroke-width="1.5" rx="8"/>
+        <rect x="12" y="12" width="28" height="28" fill="#FEF3C7" rx="6"/>
+        <text x="26" y="31" fill="#D97706" font-size="14" text-anchor="middle">☁️</text>
+        <text x="50" y="26" fill="#0F172A" font-weight="700" font-size="14">AWS S3 / Cloudflare R2</text>
+        <text x="50" y="42" fill="#64748B" font-size="11">Secure Object Storage</text>
+        <line x1="12" y1="52" x2="293" y2="52" stroke="#E2E8F0" stroke-width="1"/>
+        <text x="16" y="72" fill="#334155" font-size="11">• Encrypted KYC Docs, Room Photos, Receipts</text>
+        <text x="16" y="88" fill="#334155" font-size="11">• Pre-signed Uploads with Short-lived Expiry</text>
+    </g>
+
+    <!-- BullMQ Async Workers -->
+    <g transform="translate(1035, 555)">
+        <rect width="305" height="150" fill="#F8FAFC" stroke="#4F46E5" stroke-width="1.5" rx="8"/>
+        <rect x="12" y="12" width="28" height="28" fill="#EEF2FF" rx="6"/>
+        <text x="26" y="31" fill="#4F46E5" font-size="14" text-anchor="middle">⚙️</text>
+        <text x="50" y="26" fill="#0F172A" font-weight="700" font-size="14">BullMQ Worker Processors</text>
+        <text x="50" y="42" fill="#64748B" font-size="11">Asynchronous Job Pipelines</text>
+        <line x1="12" y1="52" x2="293" y2="52" stroke="#E2E8F0" stroke-width="1"/>
+        <text x="16" y="72" fill="#334155" font-size="11">• <tspan font-weight="600">SLA Monitor Worker:</tspan> Scans tickets every 15m</text>
+        <text x="16" y="90" fill="#334155" font-size="11">• <tspan font-weight="600">Billing Worker:</tspan> 1st of month invoice generator</text>
+        <text x="16" y="108" fill="#334155" font-size="11">• <tspan font-weight="600">Push Dispatcher:</tspan> FCM/APNs batch sender</text>
+        <text x="16" y="126" fill="#334155" font-size="11">• <tspan font-weight="600">AI Task Worker:</tspan> Batch embedding recalculation</text>
+    </g>
+
+    <!-- External Integrations Card -->
+    <g transform="translate(1035, 715)">
+        <rect width="305" height="125" fill="#F8FAFC" stroke="#059669" stroke-width="1.5" rx="8"/>
+        <text x="16" y="24" fill="#0F172A" font-weight="700" font-size="12">External Platform Services</text>
+        <line x1="12" y1="36" x2="293" y2="36" stroke="#E2E8F0" stroke-width="1"/>
+        <text x="16" y="56" fill="#334155" font-size="11">• <tspan font-weight="600">Payments:</tspan> Razorpay / Stripe Webhook Gateway</text>
+        <text x="16" y="76" fill="#334155" font-size="11">• <tspan font-weight="600">Messaging:</tspan> Twilio / MSG91 (OTP &amp; SMS alerts)</text>
+        <text x="16" y="96" fill="#334155" font-size="11">• <tspan font-weight="600">LLM Inference:</tspan> OpenAI / Anthropic / Gemini API</text>
+        <text x="16" y="114" fill="#334155" font-size="11">• <tspan font-weight="600">Push:</tspan> Apple APNs &amp; Google FCM</text>
+    </g>
+
+    <!-- Flow Arrows between Layers -->
+    <!-- Client to Backend -->
+    <path d="M 380 250 L 415 250" stroke="#6366F1" stroke-width="2" marker-end="url(#arrow-indigo)"/>
+    <path d="M 380 400 L 415 400" stroke="#10B981" stroke-width="2" marker-end="url(#arrow-emerald)"/>
+    <path d="M 380 540 L 415 540" stroke="#F59E0B" stroke-width="2" marker-end="url(#arrow-amber)"/>
+
+    <!-- Backend to Database -->
+    <path d="M 985 300 L 1035 250" stroke="#0284C7" stroke-width="2" marker-end="url(#arrow-blue)"/>
+    <!-- Backend to Redis -->
+    <path d="M 985 410 L 1035 385" stroke="#DC2626" stroke-width="2" marker-end="url(#arrow-rose)"/>
+    <!-- Backend to Workers -->
+    <path d="M 985 580 L 1035 630" stroke="#4F46E5" stroke-width="2" marker-end="url(#arrow-indigo)"/>
+</svg>

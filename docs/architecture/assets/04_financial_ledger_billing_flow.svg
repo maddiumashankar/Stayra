@@ -1,0 +1,216 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900" width="100%" height="100%">
+
+<defs>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap');
+        * { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .shadow { filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08)); }
+        .shadow-lg { filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.12)); }
+    </style>
+    
+    <filter id="card-shadow" x="-10%" y="-10%" width="120%" height="120%">
+        <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.06" flood-color="#0F172A"/>
+    </filter>
+
+    <marker id="arrow-indigo" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#6366F1"/>
+    </marker>
+    <marker id="arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10B981"/>
+    </marker>
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#F59E0B"/>
+    </marker>
+    <marker id="arrow-rose" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#F43F5E"/>
+    </marker>
+    <marker id="arrow-slate" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#64748B"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#0284C7"/>
+    </marker>
+
+    <!-- Gradients -->
+    <linearGradient id="bg-canvas" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#F8FAFC"/>
+        <stop offset="100%" stop-color="#F1F5F9"/>
+    </linearGradient>
+    <linearGradient id="grad-indigo" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#6366F1"/>
+        <stop offset="100%" stop-color="#4F46E5"/>
+    </linearGradient>
+    <linearGradient id="grad-emerald" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#10B981"/>
+        <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="grad-amber" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#F59E0B"/>
+        <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <linearGradient id="grad-rose" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#F43F5E"/>
+        <stop offset="100%" stop-color="#E11D48"/>
+    </linearGradient>
+    <linearGradient id="grad-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#0EA5E9"/>
+        <stop offset="100%" stop-color="#0284C7"/>
+    </linearGradient>
+    <linearGradient id="grad-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#A855F7"/>
+        <stop offset="100%" stop-color="#7E22CE"/>
+    </linearGradient>
+    <linearGradient id="grad-dark" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#1E293B"/>
+        <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+</defs>
+
+    <!-- Background Canvas -->
+    <rect width="1400" height="900" fill="url(#bg-canvas)" rx="16"/>
+    <rect x="20" y="20" width="1360" height="860" fill="none" stroke="#E2E8F0" stroke-width="1.5" rx="12"/>
+
+    <!-- Header -->
+    <rect x="40" y="40" width="1320" height="60" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" rx="8" filter="url(#card-shadow)"/>
+    <circle cx="70" cy="70" r="16" fill="url(#grad-amber)"/>
+    <text x="70" y="75" fill="#FFFFFF" font-weight="800" font-size="14" text-anchor="middle">$</text>
+    <text x="100" y="68" fill="#0F172A" font-weight="700" font-size="18">Stayra — Double-Entry Financial Ledger &amp; Rent Automation Architecture</text>
+    <text x="100" y="86" fill="#64748B" font-weight="500" font-size="13">Deterministic Rent Calculation, SLA Credit Offset, and Razorpay Webhook Reconciliation</text>
+    <rect x="1200" y="55" width="140" height="30" fill="#FEF3C7" rx="6"/>
+    <text x="1270" y="74" fill="#D97706" font-weight="600" font-size="12" text-anchor="middle">FINANCIAL CORE</text>
+
+    <!-- SECTION A: Monthly Bill Calculation Pipeline -->
+    <g transform="translate(50, 125)">
+        <rect width="620" height="350" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" rx="10" filter="url(#card-shadow)"/>
+        <path d="M 0 10 Q 0 0 10 0 L 610 0 Q 620 0 620 10 L 620 38 L 0 38 Z" fill="#F8FAFC"/>
+        <text x="20" y="25" fill="#0F172A" font-weight="700" font-size="14">Monthly Bill Calculation Pipeline (Deterministic Logic)</text>
+
+        <!-- Step 1: Base Rent -->
+        <rect x="20" y="55" width="580" height="50" fill="#F8FAFC" stroke="#E2E8F0" rx="6"/>
+        <text x="36" y="76" fill="#0F172A" font-weight="600" font-size="12">1. Base Rent (Agreed Tenancy Rate)</text>
+        <text x="36" y="94" fill="#64748B" font-size="11">Loaded from tenancies.agreed_rent (e.g., ₹12,000 / month)</text>
+        <text x="580" y="85" fill="#0F172A" font-weight="700" font-size="14" text-anchor="end">+₹12,000</text>
+
+        <!-- Step 2: Variable Utilities -->
+        <rect x="20" y="115" width="580" height="50" fill="#F8FAFC" stroke="#E2E8F0" rx="6"/>
+        <text x="36" y="136" fill="#0F172A" font-weight="600" font-size="12">2. Metered Utility Charges (Electricity)</text>
+        <text x="36" y="154" fill="#64748B" font-size="11">Units: (Current Reading - Previous Reading) × ₹10/unit = 120 units</text>
+        <text x="580" y="145" fill="#0F172A" font-weight="700" font-size="14" text-anchor="end">+₹1,200</text>
+
+        <!-- Step 3: Fixed Food & Amenities -->
+        <rect x="20" y="175" width="580" height="50" fill="#F8FAFC" stroke="#E2E8F0" rx="6"/>
+        <text x="36" y="196" fill="#0F172A" font-weight="600" font-size="12">3. Food Mess &amp; Maintenance Package</text>
+        <text x="36" y="214" fill="#64748B" font-size="11">Fixed monthly subscription charges configured on property</text>
+        <text x="580" y="205" fill="#0F172A" font-weight="700" font-size="14" text-anchor="end">+₹2,500</text>
+
+        <!-- Step 4: SLA Credit Deduction -->
+        <rect x="20" y="235" width="580" height="55" fill="#FEF2F2" stroke="#FCA5A5" rx="6"/>
+        <text x="36" y="256" fill="#B91C1C" font-weight="700" font-size="12">4. Service Compensation Credit Offset (Flagship Feature)</text>
+        <text x="36" y="274" fill="#991B1B" font-size="11">WiFi Outage SLA breach credit (Ticket #392, 3 days breach)</text>
+        <text x="580" y="265" fill="#DC2626" font-weight="800" font-size="15" text-anchor="end">-₹300</text>
+
+        <!-- Total Calculation Result -->
+        <rect x="20" y="300" width="580" height="40" fill="#ECFDF5" stroke="#6EE7B7" rx="6"/>
+        <text x="36" y="325" fill="#047857" font-weight="800" font-size="13">NET FINAL PAYABLE FOR INVOICE</text>
+        <text x="580" y="326" fill="#047857" font-weight="800" font-size="16" text-anchor="end">₹15,400</text>
+    </g>
+
+    <!-- SECTION B: Double-Entry Ledger Book -->
+    <g transform="translate(710, 125)">
+        <rect width="640" height="350" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" rx="10" filter="url(#card-shadow)"/>
+        <path d="M 0 10 Q 0 0 10 0 L 630 0 Q 640 0 640 10 L 640 38 L 0 38 Z" fill="#F8FAFC"/>
+        <text x="20" y="25" fill="#0F172A" font-weight="700" font-size="14">Double-Entry Journal Postings (Zero-Sum Principle)</text>
+
+        <!-- Ledger Entry 1: Invoice Generation -->
+        <rect x="20" y="55" width="600" height="80" fill="#F8FAFC" stroke="#E2E8F0" rx="6"/>
+        <text x="32" y="74" fill="#4F46E5" font-weight="700" font-size="12">EVENT: MONTHLY INVOICE GENERATED (Inv #STR-2026-001)</text>
+        <text x="32" y="94" fill="#0F172A" font-size="11"><tspan font-weight="600">DEBIT:</tspan> RECEIVABLE_RESIDENT (Resident owes Stayra/Owner)</text>
+        <text x="500" y="94" fill="#0F172A" font-weight="700" font-size="12" text-anchor="end">₹15,700 Dr</text>
+        <text x="32" y="114" fill="#64748B" font-size="11"><tspan font-weight="600">CREDIT:</tspan> REVENUE_RENT (₹12,000) + REVENUE_UTILITIES (₹3,700)</text>
+        <text x="500" y="114" fill="#64748B" font-weight="700" font-size="12" text-anchor="end">₹15,700 Cr</text>
+
+        <!-- Ledger Entry 2: SLA Credit Application -->
+        <rect x="20" y="145" width="600" height="80" fill="#F8FAFC" stroke="#E2E8F0" rx="6"/>
+        <text x="32" y="164" fill="#DC2626" font-weight="700" font-size="12">EVENT: SLA COMPENSATION APPLIED (Credit Ref #COMP-392)</text>
+        <text x="32" y="184" fill="#0F172A" font-size="11"><tspan font-weight="600">DEBIT:</tspan> EXPENSE_SERVICE_COMPENSATION (Owner liability expense)</text>
+        <text x="500" y="184" fill="#DC2626" font-weight="700" font-size="12" text-anchor="end">₹300 Dr</text>
+        <text x="32" y="204" fill="#64748B" font-size="11"><tspan font-weight="600">CREDIT:</tspan> RECEIVABLE_RESIDENT (Reduces tenant receivable)</text>
+        <text x="500" y="204" fill="#059669" font-weight="700" font-size="12" text-anchor="end">₹300 Cr</text>
+
+        <!-- Ledger Entry 3: Payment Settled -->
+        <rect x="20" y="235" width="600" height="95" fill="#F8FAFC" stroke="#E2E8F0" rx="6"/>
+        <text x="32" y="254" fill="#059669" font-weight="700" font-size="12">EVENT: PAYMENT SETTLED VIA RAZORPAY (Txn #pay_92019a)</text>
+        <text x="32" y="274" fill="#0F172A" font-size="11"><tspan font-weight="600">DEBIT:</tspan> ASSET_ESCROW (Bank account receives funds from gateway)</text>
+        <text x="500" y="274" fill="#047857" font-weight="700" font-size="12" text-anchor="end">₹15,400 Dr</text>
+        <text x="32" y="294" fill="#64748B" font-size="11"><tspan font-weight="600">CREDIT:</tspan> RECEIVABLE_RESIDENT (Tenant receivable cleared to 0)</text>
+        <text x="500" y="294" fill="#047857" font-weight="700" font-size="12" text-anchor="end">₹15,400 Cr</text>
+        <text x="32" y="316" fill="#10B981" font-weight="700" font-size="11">✓ NET RESIDENT BALANCE: ₹0.00 (Zero Outstanding Balance)</text>
+    </g>
+
+    <!-- SECTION C: Payment Gateway Webhook Sequence -->
+    <g transform="translate(50, 505)">
+        <rect width="1300" height="360" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" rx="10" filter="url(#card-shadow)"/>
+        <path d="M 0 10 Q 0 0 10 0 L 1290 0 Q 1300 0 1300 10 L 1300 40 L 0 40 Z" fill="#F8FAFC"/>
+        <text x="24" y="26" fill="#0F172A" font-weight="700" font-size="14">IDEMPOTENT PAYMENT GATEWAY WEBHOOK ARCHITECTURE</text>
+
+        <!-- Column 1: Client App -->
+        <rect x="30" y="60" width="220" height="280" fill="#F8FAFC" stroke="#E2E8F0" rx="8"/>
+        <rect x="30" y="60" width="220" height="35" fill="#EEF2FF" rx="8"/>
+        <text x="140" y="82" fill="#4F46E5" font-weight="700" font-size="12" text-anchor="middle">React Native Client</text>
+        <text x="44" y="120" fill="#334155" font-size="11">1. User taps "Pay Rent"</text>
+        <text x="44" y="150" fill="#334155" font-size="11">2. POST /payments/order</text>
+        <text x="44" y="180" fill="#334155" font-size="11">3. Razorpay SDK opens</text>
+        <text x="44" y="210" fill="#334155" font-size="11">4. Resident pays via UPI</text>
+        <text x="44" y="250" fill="#DC2626" font-weight="600" font-size="10">⚠️ Never trust client</text>
+        <text x="44" y="266" fill="#DC2626" font-size="10">success callback alone</text>
+        <text x="44" y="282" fill="#64748B" font-size="10">Wait for backend webhook</text>
+
+        <!-- Column 2: Razorpay Gateway -->
+        <rect x="290" y="60" width="220" height="280" fill="#F8FAFC" stroke="#E2E8F0" rx="8"/>
+        <rect x="290" y="60" width="220" height="35" fill="#E0F2FE" rx="8"/>
+        <text x="400" y="82" fill="#0284C7" font-weight="700" font-size="12" text-anchor="middle">Razorpay Gateway</text>
+        <text x="304" y="120" fill="#334155" font-size="11">1. Processes Bank / UPI</text>
+        <text x="304" y="150" fill="#334155" font-size="11">2. Captures payment</text>
+        <text x="304" y="180" fill="#334155" font-size="11">3. Signs payload using</text>
+        <text x="304" y="196" fill="#0284C7" font-weight="600" font-size="10">HMAC-SHA256 secret</text>
+        <text x="304" y="230" fill="#334155" font-size="11">4. Dispatches webhook to</text>
+        <text x="304" y="246" fill="#334155" font-size="10">/api/v1/payments/webhook</text>
+        <text x="304" y="280" fill="#059669" font-weight="600" font-size="11">Retries on 5xx failure</text>
+
+        <!-- Column 3: Backend Ingress & Signature -->
+        <rect x="550" y="60" width="230" height="280" fill="#F8FAFC" stroke="#E2E8F0" rx="8"/>
+        <rect x="550" y="60" width="230" height="35" fill="#FEF3C7" rx="8"/>
+        <text x="665" y="82" fill="#B45309" font-weight="700" font-size="12" text-anchor="middle">Security &amp; Signature</text>
+        <text x="564" y="120" fill="#334155" font-size="11">1. Read raw body payload</text>
+        <text x="564" y="150" fill="#334155" font-size="11">2. Verify X-Razorpay-Sig</text>
+        <text x="564" y="170" fill="#DC2626" font-weight="600" font-size="10">Invalid? Return 400 Bad</text>
+        <text x="564" y="200" fill="#334155" font-size="11">3. Check idempotency key</text>
+        <text x="564" y="216" fill="#64748B" font-size="10">in Redis: SETNX(txn_id)</text>
+        <text x="564" y="246" fill="#059669" font-weight="600" font-size="11">Already processed?</text>
+        <text x="564" y="262" fill="#059669" font-size="10">Return 200 OK immediately</text>
+
+        <!-- Column 4: Ledger & DB Execution -->
+        <rect x="820" y="60" width="230" height="280" fill="#F8FAFC" stroke="#E2E8F0" rx="8"/>
+        <rect x="820" y="60" width="230" height="35" fill="#ECFDF5" rx="8"/>
+        <text x="935" y="82" fill="#047857" font-weight="700" font-size="12" text-anchor="middle">Database Atomic Txn</text>
+        <text x="834" y="120" fill="#334155" font-size="11">1. Begin SQL Transaction</text>
+        <text x="834" y="145" fill="#334155" font-size="11">2. Lock bill row with</text>
+        <text x="834" y="160" fill="#047857" font-weight="600" font-size="10">SELECT ... FOR UPDATE</text>
+        <text x="834" y="185" fill="#334155" font-size="11">3. Post double-entry records</text>
+        <text x="834" y="210" fill="#334155" font-size="11">4. Set bill.status = 'PAID'</text>
+        <text x="834" y="235" fill="#334155" font-size="11">5. Commit Transaction</text>
+        <text x="834" y="265" fill="#059669" font-weight="700" font-size="11">✓ Zero Balance Achieved</text>
+
+        <!-- Column 5: Notifications & Receipt -->
+        <rect x="1080" y="60" width="200" height="280" fill="#F8FAFC" stroke="#E2E8F0" rx="8"/>
+        <rect x="1080" y="60" width="200" height="35" fill="#F3E8FF" rx="8"/>
+        <text x="1180" y="82" fill="#7E22CE" font-weight="700" font-size="12" text-anchor="middle">Receipt &amp; Alerts</text>
+        <text x="1094" y="120" fill="#334155" font-size="11">1. Generate PDF receipt</text>
+        <text x="1094" y="150" fill="#334155" font-size="11">2. Upload receipt to S3</text>
+        <text x="1094" y="180" fill="#334155" font-size="11">3. Push notification to</text>
+        <text x="1094" y="196" fill="#64748B" font-size="10">Resident &amp; Owner</text>
+        <text x="1094" y="226" fill="#334155" font-size="11">4. WhatsApp confirmation</text>
+        <text x="1094" y="256" fill="#7E22CE" font-weight="600" font-size="11">5. Update Owner Metrics</text>
+    </g>
+</svg>

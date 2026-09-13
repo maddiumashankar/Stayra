@@ -1,0 +1,201 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900" width="100%" height="100%">
+
+<defs>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap');
+        * { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .shadow { filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08)); }
+        .shadow-lg { filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.12)); }
+    </style>
+    
+    <filter id="card-shadow" x="-10%" y="-10%" width="120%" height="120%">
+        <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.06" flood-color="#0F172A"/>
+    </filter>
+
+    <marker id="arrow-indigo" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#6366F1"/>
+    </marker>
+    <marker id="arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10B981"/>
+    </marker>
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#F59E0B"/>
+    </marker>
+    <marker id="arrow-rose" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#F43F5E"/>
+    </marker>
+    <marker id="arrow-slate" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#64748B"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#0284C7"/>
+    </marker>
+
+    <!-- Gradients -->
+    <linearGradient id="bg-canvas" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#F8FAFC"/>
+        <stop offset="100%" stop-color="#F1F5F9"/>
+    </linearGradient>
+    <linearGradient id="grad-indigo" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#6366F1"/>
+        <stop offset="100%" stop-color="#4F46E5"/>
+    </linearGradient>
+    <linearGradient id="grad-emerald" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#10B981"/>
+        <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="grad-amber" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#F59E0B"/>
+        <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <linearGradient id="grad-rose" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#F43F5E"/>
+        <stop offset="100%" stop-color="#E11D48"/>
+    </linearGradient>
+    <linearGradient id="grad-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#0EA5E9"/>
+        <stop offset="100%" stop-color="#0284C7"/>
+    </linearGradient>
+    <linearGradient id="grad-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#A855F7"/>
+        <stop offset="100%" stop-color="#7E22CE"/>
+    </linearGradient>
+    <linearGradient id="grad-dark" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#1E293B"/>
+        <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+</defs>
+
+    <!-- Background Canvas -->
+    <rect width="1400" height="900" fill="url(#bg-canvas)" rx="16"/>
+    <rect x="20" y="20" width="1360" height="860" fill="none" stroke="#E2E8F0" stroke-width="1.5" rx="12"/>
+
+    <!-- Header -->
+    <rect x="40" y="40" width="1320" height="60" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" rx="8" filter="url(#card-shadow)"/>
+    <circle cx="70" cy="70" r="16" fill="url(#grad-dark)"/>
+    <text x="70" y="75" fill="#FFFFFF" font-weight="800" font-size="14" text-anchor="middle">☁</text>
+    <text x="100" y="68" fill="#0F172A" font-weight="700" font-size="18">Stayra — Production Cloud Infrastructure &amp; Deployment Topology</text>
+    <text x="100" y="86" fill="#64748B" font-weight="500" font-size="13">Multi-AZ High Availability: AWS ECS Fargate, Aurora PostgreSQL PostGIS, ElastiCache Redis &amp; CloudFront</text>
+    <rect x="1190" y="55" width="150" height="30" fill="#F1F5F9" rx="6"/>
+    <text x="1265" y="74" fill="#334155" font-weight="600" font-size="12" text-anchor="middle">INFRASTRUCTURE</text>
+
+    <!-- Boundary: AWS Cloud VPC -->
+    <g transform="translate(50, 125)">
+        <rect width="1300" height="735" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" rx="10" filter="url(#card-shadow)"/>
+        <path d="M 0 10 Q 0 0 10 0 L 1290 0 Q 1300 0 1300 10 L 1300 38 L 0 38 Z" fill="#0F172A"/>
+        <text x="20" y="25" fill="#FFFFFF" font-weight="700" font-size="13">AWS Cloud Virtual Private Cloud (VPC) — ap-south-1 (Mumbai Region)</text>
+        <text x="1280" y="25" fill="#94A3B8" font-size="11" text-anchor="end">Multi-AZ Redundancy (AZ-1a &amp; AZ-1b)</text>
+
+        <!-- 1. Ingress & Edge Layer -->
+        <g transform="translate(25, 55)">
+            <rect width="380" height="150" fill="#F8FAFC" stroke="#CBD5E1" rx="8"/>
+            <text x="20" y="25" fill="#0F172A" font-weight="700" font-size="13">1. Edge &amp; Ingress Security Layer</text>
+            <text x="20" y="50" fill="#334155" font-size="11">• <tspan font-weight="600">Cloudflare DNS &amp; DDoS Shield:</tspan> Anycast network</text>
+            <text x="20" y="72" fill="#334155" font-size="11">• <tspan font-weight="600">AWS CloudFront CDN:</tspan> Static photos &amp; PDFs cache</text>
+            <text x="20" y="94" fill="#334155" font-size="11">• <tspan font-weight="600">AWS WAF v2:</tspan> Rate limiting &amp; bot mitigation</text>
+            <text x="20" y="116" fill="#334155" font-size="11">• <tspan font-weight="600">Application Load Balancer:</tspan> TLS 1.3 Termination</text>
+            <text x="20" y="134" fill="#059669" font-weight="600" font-size="10">Auto-scales across public subnets in AZ-1a / AZ-1b</text>
+        </g>
+
+        <!-- 2. ECS Fargate Application Cluster -->
+        <g transform="translate(435, 55)">
+            <rect width="450" height="300" fill="#F8FAFC" stroke="#4F46E5" stroke-width="1.5" rx="8"/>
+            <text x="20" y="25" fill="#4F46E5" font-weight="700" font-size="13">2. Compute Layer: AWS ECS Fargate Cluster</text>
+
+            <!-- Container 1: API Task -->
+            <rect x="20" y="45" width="410" height="110" fill="#FFFFFF" stroke="#E2E8F0" rx="6"/>
+            <text x="35" y="68" fill="#0F172A" font-weight="700" font-size="12">Stayra API Containers (NestJS Node.js 20)</text>
+            <text x="35" y="88" fill="#334155" font-size="11">• Min: 2 tasks, Max: 10 tasks (Target CPU &lt; 65%)</text>
+            <text x="35" y="108" fill="#334155" font-size="11">• Serves REST endpoints, WebSockets, and Auth</text>
+            <text x="35" y="128" fill="#64748B" font-size="10">• Health checks at /health every 15s</text>
+
+            <!-- Container 2: Worker Task -->
+            <rect x="20" y="165" width="410" height="115" fill="#FFFFFF" stroke="#E2E8F0" rx="6"/>
+            <text x="35" y="188" fill="#047857" font-weight="700" font-size="12">Stayra BullMQ Worker Tasks</text>
+            <text x="35" y="208" fill="#334155" font-size="11">• Independent auto-scaling task group</text>
+            <text x="35" y="228" fill="#334155" font-size="11">• Processes billing generation, SLA heartbeat, push alerts</text>
+            <text x="35" y="248" fill="#334155" font-size="11">• Dead-letter queues (DLQ) with Sentry error alerting</text>
+        </g>
+
+        <!-- 3. Persistence Layer -->
+        <g transform="translate(915, 55)">
+            <rect width="360" height="300" fill="#F8FAFC" stroke="#0284C7" stroke-width="1.5" rx="8"/>
+            <text x="20" y="25" fill="#0284C7" font-weight="700" font-size="13">3. Database &amp; Cache Tier</text>
+
+            <!-- Aurora PG -->
+            <rect x="20" y="45" width="320" height="110" fill="#FFFFFF" stroke="#E2E8F0" rx="6"/>
+            <text x="35" y="68" fill="#0F172A" font-weight="700" font-size="12">Amazon Aurora PostgreSQL 16</text>
+            <text x="35" y="88" fill="#334155" font-size="11">• PostGIS + pgvector extensions enabled</text>
+            <text x="35" y="108" fill="#334155" font-size="11">• Multi-AZ Primary with 1 Read Replica</text>
+            <text x="35" y="128" fill="#059669" font-weight="600" font-size="10">Automated daily snapshots + 30-day retention</text>
+
+            <!-- Redis Cluster -->
+            <rect x="20" y="165" width="320" height="115" fill="#FFFFFF" stroke="#E2E8F0" rx="6"/>
+            <text x="35" y="188" fill="#DC2626" font-weight="700" font-size="12">Amazon ElastiCache Redis 7.2</text>
+            <text x="35" y="208" fill="#334155" font-size="11">• Multi-AZ with automatic failover</text>
+            <text x="35" y="228" fill="#334155" font-size="11">• Manages BullMQ job queues and OTP rate limits</text>
+            <text x="35" y="248" fill="#64748B" font-size="10">In-memory caching of search queries &amp; sessions</text>
+        </g>
+
+        <!-- 4. Storage & Media Layer -->
+        <g transform="translate(25, 230)">
+            <rect width="380" height="125" fill="#F8FAFC" stroke="#D97706" stroke-width="1.5" rx="8"/>
+            <text x="20" y="25" fill="#D97706" font-weight="700" font-size="13">4. Secure Object Storage Tier</text>
+            <text x="20" y="48" fill="#334155" font-size="11">• <tspan font-weight="600">AWS S3 Private Bucket:</tspan> KYC documents &amp; invoices</text>
+            <text x="20" y="70" fill="#334155" font-size="11">• <tspan font-weight="600">AWS S3 Public Bucket:</tspan> PG room photos &amp; floor plans</text>
+            <text x="20" y="92" fill="#334155" font-size="11">• Server-Side Encryption (SSE-KMS)</text>
+            <text x="20" y="112" fill="#059669" font-weight="600" font-size="10">Pre-signed URL uploads with 15-minute expiry</text>
+        </g>
+
+        <!-- 5. Observability & Monitoring Infrastructure -->
+        <g transform="translate(25, 385)">
+            <rect width="1250" height="325" fill="#F8FAFC" stroke="#64748B" stroke-width="1.5" rx="8"/>
+            <text x="25" y="28" fill="#0F172A" font-weight="700" font-size="14">5. Unified Observability &amp; Telemetry Stack</text>
+
+            <g transform="translate(25, 45)">
+                <rect width="280" height="250" fill="#FFFFFF" stroke="#E2E8F0" rx="6"/>
+                <text x="20" y="26" fill="#4F46E5" font-weight="700" font-size="12">Structured Logging</text>
+                <text x="20" y="50" fill="#334155" font-size="11">• JSON format with correlation ID</text>
+                <text x="20" y="70" fill="#334155" font-size="11">• Shipped to AWS CloudWatch Logs</text>
+                <text x="20" y="90" fill="#334155" font-size="11">• PII redaction on phone &amp; IDs</text>
+                <text x="20" y="110" fill="#334155" font-size="11">• Audit logs for all financial edits</text>
+                <text x="20" y="140" fill="#64748B" font-size="10">Log aggregation with Elasticsearch /</text>
+                <text x="20" y="156" fill="#64748B" font-size="10">Datadog for instant grep &amp; alerts</text>
+            </g>
+
+            <g transform="translate(330, 45)">
+                <rect width="280" height="250" fill="#FFFFFF" stroke="#E2E8F0" rx="6"/>
+                <text x="20" y="26" fill="#059669" font-weight="700" font-size="12">Metrics &amp; Alerting</text>
+                <text x="20" y="50" fill="#334155" font-size="11">• Prometheus metrics endpoint</text>
+                <text x="20" y="70" fill="#334155" font-size="11">• Grafana executive dashboard</text>
+                <text x="20" y="90" fill="#334155" font-size="11">• Tracks P95 latency (&lt; 150ms)</text>
+                <text x="20" y="110" fill="#334155" font-size="11">• Tracks payment webhook failure rate</text>
+                <text x="20" y="130" fill="#334155" font-size="11">• Tracks BullMQ job queue depth</text>
+                <text x="20" y="156" fill="#DC2626" font-weight="600" font-size="10">PagerDuty alerts on high error rate</text>
+            </g>
+
+            <g transform="translate(635, 45)">
+                <rect width="280" height="250" fill="#FFFFFF" stroke="#E2E8F0" rx="6"/>
+                <text x="20" y="26" fill="#D97706" font-weight="700" font-size="12">Distributed APM Tracing</text>
+                <text x="20" y="50" fill="#334155" font-size="11">• OpenTelemetry SDK in NestJS</text>
+                <text x="20" y="70" fill="#334155" font-size="11">• Traces end-to-end request latency:</text>
+                <text x="20" y="90" fill="#64748B" font-size="10">  Mobile → ALB → NestJS → SQL</text>
+                <text x="20" y="115" fill="#334155" font-size="11">• Identifies slow PostGIS spatial</text>
+                <text x="20" y="132" fill="#334155" font-size="11">  queries or AI gateway latency</text>
+                <text x="20" y="156" fill="#059669" font-weight="600" font-size="10">Pinpoints database bottle necks</text>
+            </g>
+
+            <g transform="translate(940, 45)">
+                <rect width="280" height="250" fill="#FFFFFF" stroke="#E2E8F0" rx="6"/>
+                <text x="20" y="26" fill="#DC2626" font-weight="700" font-size="12">Error Tracking &amp; Sentry</text>
+                <text x="20" y="50" fill="#334155" font-size="11">• Sentry SDK in React Native mobile</text>
+                <text x="20" y="70" fill="#334155" font-size="11">• Sentry SDK in NestJS backend</text>
+                <text x="20" y="90" fill="#334155" font-size="11">• Captures unhandled exceptions</text>
+                <text x="20" y="110" fill="#334155" font-size="11">• Tracks mobile crash-free rate (&gt;99.8%)</text>
+                <text x="20" y="130" fill="#334155" font-size="11">• Breadcrumbs link user actions to</text>
+                <text x="20" y="148" fill="#334155" font-size="11">  exact error stack traces</text>
+            </g>
+        </g>
+    </g>
+</svg>

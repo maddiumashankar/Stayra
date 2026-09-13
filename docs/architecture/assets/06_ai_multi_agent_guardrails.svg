@@ -1,0 +1,236 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900" width="100%" height="100%">
+
+<defs>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap');
+        * { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .shadow { filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08)); }
+        .shadow-lg { filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.12)); }
+    </style>
+    
+    <filter id="card-shadow" x="-10%" y="-10%" width="120%" height="120%">
+        <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.06" flood-color="#0F172A"/>
+    </filter>
+
+    <marker id="arrow-indigo" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#6366F1"/>
+    </marker>
+    <marker id="arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10B981"/>
+    </marker>
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#F59E0B"/>
+    </marker>
+    <marker id="arrow-rose" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#F43F5E"/>
+    </marker>
+    <marker id="arrow-slate" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#64748B"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#0284C7"/>
+    </marker>
+
+    <!-- Gradients -->
+    <linearGradient id="bg-canvas" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#F8FAFC"/>
+        <stop offset="100%" stop-color="#F1F5F9"/>
+    </linearGradient>
+    <linearGradient id="grad-indigo" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#6366F1"/>
+        <stop offset="100%" stop-color="#4F46E5"/>
+    </linearGradient>
+    <linearGradient id="grad-emerald" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#10B981"/>
+        <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="grad-amber" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#F59E0B"/>
+        <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <linearGradient id="grad-rose" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#F43F5E"/>
+        <stop offset="100%" stop-color="#E11D48"/>
+    </linearGradient>
+    <linearGradient id="grad-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#0EA5E9"/>
+        <stop offset="100%" stop-color="#0284C7"/>
+    </linearGradient>
+    <linearGradient id="grad-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#A855F7"/>
+        <stop offset="100%" stop-color="#7E22CE"/>
+    </linearGradient>
+    <linearGradient id="grad-dark" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#1E293B"/>
+        <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+</defs>
+
+    <!-- Background Canvas -->
+    <rect width="1400" height="900" fill="url(#bg-canvas)" rx="16"/>
+    <rect x="20" y="20" width="1360" height="860" fill="none" stroke="#E2E8F0" stroke-width="1.5" rx="12"/>
+
+    <!-- Header -->
+    <rect x="40" y="40" width="1320" height="60" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" rx="8" filter="url(#card-shadow)"/>
+    <circle cx="70" cy="70" r="16" fill="url(#grad-purple)"/>
+    <text x="70" y="75" fill="#FFFFFF" font-weight="800" font-size="14" text-anchor="middle">AI</text>
+    <text x="100" y="68" fill="#0F172A" font-weight="700" font-size="18">Stayra — AI Multi-Agent Gateway &amp; Deterministic Guardrails</text>
+    <text x="100" y="86" fill="#64748B" font-weight="500" font-size="13">Tool-Calling Architecture, Zod Validation, Zero-Direct-DB-Mutation Invariant &amp; Audit Logging</text>
+    <rect x="1190" y="55" width="150" height="30" fill="#F3E8FF" rx="6"/>
+    <text x="1265" y="74" fill="#7E22CE" font-weight="600" font-size="12" text-anchor="middle">AI GATEWAY</text>
+
+    <!-- Pipeline: User Input to LLM to Tool Calling to DB -->
+    <!-- Column 1: Client Intent -->
+    <g transform="translate(50, 125)">
+        <rect width="260" height="735" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" rx="10" filter="url(#card-shadow)"/>
+        <path d="M 0 10 Q 0 0 10 0 L 250 0 Q 260 0 260 10 L 260 38 L 0 38 Z" fill="#F8FAFC"/>
+        <text x="20" y="25" fill="#0F172A" font-weight="700" font-size="13">1. Unstructured User Input</text>
+
+        <!-- Card 1 -->
+        <rect x="15" y="55" width="230" height="150" fill="#F8FAFC" stroke="#E2E8F0" rx="6"/>
+        <text x="25" y="78" fill="#4F46E5" font-weight="700" font-size="12">Natural Language Discovery</text>
+        <rect x="25" y="90" width="210" height="85" fill="#FFFFFF" stroke="#CBD5E1" rx="4"/>
+        <text x="35" y="110" fill="#334155" font-size="10">"Find a double sharing</text>
+        <text x="35" y="126" fill="#334155" font-size="10">room near Cyber City under</text>
+        <text x="35" y="142" fill="#334155" font-size="10">₹14k with AC, veg food and</text>
+        <text x="35" y="158" fill="#334155" font-size="10">good WiFi reliability."</text>
+
+        <!-- Card 2 -->
+        <rect x="15" y="225" width="230" height="150" fill="#F8FAFC" stroke="#E2E8F0" rx="6"/>
+        <text x="25" y="248" fill="#E11D48" font-weight="700" font-size="12">Complaint Voice / Text</text>
+        <rect x="25" y="260" width="210" height="85" fill="#FFFFFF" stroke="#CBD5E1" rx="4"/>
+        <text x="35" y="280" fill="#334155" font-size="10">"The geyser in Room 302</text>
+        <text x="35" y="296" fill="#334155" font-size="10">sparked and tripped the</text>
+        <text x="35" y="312" fill="#334155" font-size="10">MCB switchboard. It smells</text>
+        <text x="35" y="328" fill="#334155" font-size="10">like burning plastic."</text>
+
+        <!-- Card 3 -->
+        <rect x="15" y="395" width="230" height="150" fill="#F8FAFC" stroke="#E2E8F0" rx="6"/>
+        <text x="25" y="418" fill="#059669" font-weight="700" font-size="12">Owner Copilot Query</text>
+        <rect x="25" y="430" width="210" height="85" fill="#FFFFFF" stroke="#CBD5E1" rx="4"/>
+        <text x="35" y="450" fill="#334155" font-size="10">"Show me occupancy and</text>
+        <text x="35" y="466" fill="#334155" font-size="10">top recurring maintenance</text>
+        <text x="35" y="482" fill="#334155" font-size="10">tickets across my HSR</text>
+        <text x="35" y="498" fill="#334155" font-size="10">branches this quarter."</text>
+    </g>
+
+    <!-- Column 2: AI Gateway & LLM Orchestrator -->
+    <g transform="translate(340, 125)">
+        <rect width="320" height="735" fill="#FFFFFF" stroke="#6366F1" stroke-width="2" rx="10" filter="url(#card-shadow)"/>
+        <path d="M 0 10 Q 0 0 10 0 L 310 0 Q 320 0 320 10 L 320 38 L 0 38 Z" fill="#EEF2FF"/>
+        <text x="20" y="25" fill="#4F46E5" font-weight="700" font-size="13">2. AI Gateway &amp; LLM Tool Calling</text>
+
+        <rect x="15" y="55" width="290" height="135" fill="#F8FAFC" stroke="#E2E8F0" rx="6"/>
+        <text x="25" y="78" fill="#0F172A" font-weight="700" font-size="12">Prompt Sanitization &amp; RAG</text>
+        <text x="25" y="98" fill="#64748B" font-size="11">• Strips harmful prompt injections</text>
+        <text x="25" y="118" fill="#64748B" font-size="11">• Injects tenant session context</text>
+        <text x="25" y="138" fill="#64748B" font-size="11">• Injects tool schemas (JSON Schema)</text>
+        <text x="25" y="158" fill="#64748B" font-size="11">• Calls LLM (OpenAI / Anthropic / Gemini)</text>
+
+        <!-- Structured Tool Call Emit -->
+        <rect x="15" y="205" width="290" height="240" fill="#F8FAFC" stroke="#CBD5E1" rx="6"/>
+        <text x="25" y="228" fill="#7C3AED" font-weight="700" font-size="12">Structured Tool Call Payload</text>
+        <rect x="25" y="240" width="270" height="185" fill="#0F172A" rx="4"/>
+        <text x="35" y="262" fill="#38BDF8" font-size="10" font-family="monospace">tool_name: "create_ticket_draft"</text>
+        <text x="35" y="282" fill="#F8FAFC" font-size="10" font-family="monospace">args: &#123;</text>
+        <text x="45" y="302" fill="#FCD34D" font-size="10" font-family="monospace">"category": "ELECTRICITY",</text>
+        <text x="45" y="322" fill="#FCD34D" font-size="10" font-family="monospace">"severity": "CRITICAL",</text>
+        <text x="45" y="342" fill="#FCD34D" font-size="10" font-family="monospace">"hazard": "FIRE_RISK",</text>
+        <text x="45" y="362" fill="#FCD34D" font-size="10" font-family="monospace">"sla_hours": 2,</text>
+        <text x="45" y="382" fill="#FCD34D" font-size="10" font-family="monospace">"room": "302"</text>
+        <text x="35" y="402" fill="#F8FAFC" font-size="10" font-family="monospace">&#125;</text>
+
+        <rect x="15" y="460" width="290" height="250" fill="#EEF2FF" stroke="#C7D2FE" rx="6"/>
+        <text x="25" y="485" fill="#4338CA" font-weight="700" font-size="12">AI Gateway Interceptor Rules</text>
+        <text x="25" y="510" fill="#334155" font-size="11">1. Intercepts raw tool output</text>
+        <text x="25" y="535" fill="#334155" font-size="11">2. Prevents SQL injection or raw queries</text>
+        <text x="25" y="560" fill="#334155" font-size="11">3. Verifies tool is permitted for User Role</text>
+        <text x="25" y="585" fill="#334155" font-size="11">4. Validates parameters with Zod schema</text>
+        <text x="25" y="615" fill="#DC2626" font-weight="700" font-size="11">5. REJECTS if direct ledger write attempted</text>
+    </g>
+
+    <!-- Column 3: Guardrail & Validation Engine -->
+    <g transform="translate(690, 125)">
+        <rect width="320" height="735" fill="#FFFFFF" stroke="#DC2626" stroke-width="2" rx="10" filter="url(#card-shadow)"/>
+        <path d="M 0 10 Q 0 0 10 0 L 310 0 Q 320 0 320 10 L 320 38 L 0 38 Z" fill="#FEE2E2"/>
+        <text x="20" y="25" fill="#B91C1C" font-weight="700" font-size="13">3. Deterministic Guardrail Layer</text>
+
+        <!-- Guardrail 1 -->
+        <rect x="15" y="55" width="290" height="145" fill="#F8FAFC" stroke="#E2E8F0" rx="6"/>
+        <text x="25" y="78" fill="#DC2626" font-weight="700" font-size="12">Guardrail 1: Zero Direct DB Write</text>
+        <text x="25" y="100" fill="#334155" font-size="11">The LLM can NEVER issue direct UPDATE or</text>
+        <text x="25" y="118" fill="#334155" font-size="11">INSERT commands to PostgreSQL.</text>
+        <text x="25" y="142" fill="#047857" font-weight="600" font-size="11">✓ It outputs parameters to typed</text>
+        <text x="25" y="160" fill="#047857" font-size="11">  NestJS service methods only.</text>
+
+        <!-- Guardrail 2 -->
+        <rect x="15" y="215" width="290" height="145" fill="#F8FAFC" stroke="#E2E8F0" rx="6"/>
+        <text x="25" y="238" fill="#DC2626" font-weight="700" font-size="12">Guardrail 2: Zod Schema Defense</text>
+        <text x="25" y="260" fill="#334155" font-size="11">All arguments validated against strict Zod</text>
+        <text x="25" y="278" fill="#334155" font-size="11">schemas before service invocation.</text>
+        <text x="25" y="302" fill="#B91C1C" font-weight="600" font-size="11">✗ Any unexpected field throws</text>
+        <text x="25" y="320" fill="#B91C1C" font-size="11">  BadRequestException immediately.</text>
+
+        <!-- Guardrail 3 -->
+        <rect x="15" y="375" width="290" height="155" fill="#F8FAFC" stroke="#E2E8F0" rx="6"/>
+        <text x="25" y="398" fill="#DC2626" font-weight="700" font-size="12">Guardrail 3: Immutable AI Audit Log</text>
+        <text x="25" y="420" fill="#334155" font-size="11">Every prompt, output, tool call, token count,</text>
+        <text x="25" y="438" fill="#334155" font-size="11">and execution latency is written to</text>
+        <text x="25" y="456" fill="#4F46E5" font-weight="600" font-size="11">ai_audit_logs table.</text>
+        <text x="25" y="480" fill="#64748B" font-size="10">• Full forensic traceability</text>
+        <text x="25" y="498" fill="#64748B" font-size="10">• Tracks AI cost &amp; model hallucination rate</text>
+
+        <!-- Summary Badge -->
+        <rect x="15" y="545" width="290" height="165" fill="#ECFDF5" stroke="#10B981" rx="6"/>
+        <text x="25" y="575" fill="#047857" font-weight="800" font-size="13">SAFE AI IN PRACTICE:</text>
+        <text x="25" y="605" fill="#065F46" font-size="11">AI classifies tickets &amp; recommends PGs,</text>
+        <text x="25" y="625" fill="#065F46" font-size="11">flags billing spikes &amp; assists owners,</text>
+        <text x="25" y="650" fill="#047857" font-weight="700" font-size="11">BUT deterministic backend code always</text>
+        <text x="25" y="668" fill="#047857" font-weight="700" font-size="11">governs money, tenancy, and locks.</text>
+    </g>
+
+    <!-- Column 4: Verified Execution in Backend -->
+    <g transform="translate(1040, 125)">
+        <rect width="310" height="735" fill="#FFFFFF" stroke="#059669" stroke-width="2" rx="10" filter="url(#card-shadow)"/>
+        <path d="M 0 10 Q 0 0 10 0 L 300 0 Q 310 0 310 10 L 310 38 L 0 38 Z" fill="#ECFDF5"/>
+        <text x="20" y="25" fill="#047857" font-weight="700" font-size="13">4. Deterministic Backend Execution</text>
+
+        <rect x="15" y="55" width="280" height="145" fill="#F8FAFC" stroke="#E2E8F0" rx="6"/>
+        <text x="25" y="78" fill="#047857" font-weight="700" font-size="12">PostGIS Geo Search</text>
+        <text x="25" y="98" fill="#334155" font-size="11">Executed by PropertyService:</text>
+        <text x="25" y="118" fill="#64748B" font-size="10">SELECT * FROM properties</text>
+        <text x="25" y="134" fill="#64748B" font-size="10">WHERE ST_DWithin(coords, point, 3000)</text>
+        <text x="25" y="150" fill="#64748B" font-size="10">AND base_rent &lt;= 14000</text>
+        <text x="25" y="172" fill="#059669" font-weight="600" font-size="11">✓ Returns ranked PG list</text>
+
+        <rect x="15" y="215" width="280" height="145" fill="#F8FAFC" stroke="#E2E8F0" rx="6"/>
+        <text x="25" y="238" fill="#047857" font-weight="700" font-size="12">Ticket Dispatch &amp; SLA Timer</text>
+        <text x="25" y="258" fill="#334155" font-size="11">Executed by ComplaintService:</text>
+        <text x="25" y="278" fill="#64748B" font-size="10">• Ticket created in database</text>
+        <text x="25" y="296" fill="#64748B" font-size="10">• sla_target_time = NOW() + 2 hours</text>
+        <text x="25" y="314" fill="#64748B" font-size="10">• Urgent alert sent to electrician</text>
+        <text x="25" y="336" fill="#059669" font-weight="600" font-size="11">✓ Ticket #TKT-892 active</text>
+
+        <rect x="15" y="375" width="280" height="145" fill="#F8FAFC" stroke="#E2E8F0" rx="6"/>
+        <text x="25" y="398" fill="#047857" font-weight="700" font-size="12">Billing Anomaly Flag</text>
+        <text x="25" y="418" fill="#334155" font-size="11">Executed by BillingService:</text>
+        <text x="25" y="438" fill="#64748B" font-size="10">• Flags bill for owner review</text>
+        <text x="25" y="456" fill="#64748B" font-size="10">• Sub-meter photo requested</text>
+        <text x="25" y="474" fill="#64748B" font-size="10">• Holds publication until verified</text>
+        <text x="25" y="496" fill="#059669" font-weight="600" font-size="11">✓ Prevents erroneous debit</text>
+
+        <!-- Final Flow Arrow -->
+        <rect x="15" y="535" width="280" height="175" fill="#F8FAFC" stroke="#CBD5E1" rx="6"/>
+        <text x="25" y="565" fill="#0F172A" font-weight="700" font-size="12">Client Response Synthesis</text>
+        <text x="25" y="590" fill="#334155" font-size="11">Sanitized, structured data returned</text>
+        <text x="25" y="610" fill="#334155" font-size="11">to client with verified links,</text>
+        <text x="25" y="630" fill="#334155" font-size="11">coordinates, and ticket numbers.</text>
+        <text x="25" y="660" fill="#4F46E5" font-weight="700" font-size="12">✓ Zero Hallucination Risk</text>
+    </g>
+
+    <!-- Connectors -->
+    <path d="M 310 320 L 340 320" stroke="#6366F1" stroke-width="2.5" marker-end="url(#arrow-indigo)"/>
+    <path d="M 660 320 L 690 320" stroke="#DC2626" stroke-width="2.5" marker-end="url(#arrow-rose)"/>
+    <path d="M 1010 320 L 1040 320" stroke="#059669" stroke-width="2.5" marker-end="url(#arrow-emerald)"/>
+</svg>

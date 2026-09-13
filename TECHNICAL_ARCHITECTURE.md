@@ -13,73 +13,41 @@ Stayra is architected as a **High-Performance Modular Monolith** on the backend 
 
 ### 1.1 High-Level Architecture Topology
 
-```mermaid
-flowchart TB
-    subgraph Client Layer [Client Application Layer]
-        RN_RES["Stayra Mobile App (Resident Mode)\nReact Native / Expo Router"]
-        RN_OWN["Stayra Mobile App (Owner Mode)\nReact Native / Expo Router"]
-        WEB_ADM["Admin & Operations Console\n(Next.js / Vite - Phase 2)"]
-    end
+![Stayra High-Level System Topology](./docs/architecture/assets/01_system_topology.svg)
 
-    subgraph Gateway [Ingress & Edge Routing]
-        ALB["AWS Application Load Balancer / NGINX Reverse Proxy"]
-        WAF["AWS WAF (Rate Limiting, DDoS Protection)"]
-    end
+#### Architectural Subsystem Breakdown:
+1. **Client Application Layer (Cross-Platform Mobile):**
+   - **Resident Mobile App:** React Native with Expo Router v3, TanStack Query v5, Zustand stores, and offline-first mutation queues.
+   - **Owner Mobile & Web Portal:** Bed grid allocation, request management, billing approval, and staff maintenance dispatching.
+   - **Staff Operations App:** Lightweight view for plumbers, electricians, and housekeeping with photo proof uploads.
+2. **Edge, Ingress & Security:**
+   - AWS Route 53 + Cloudflare DDoS shield $\to$ AWS WAF v2 (rate limiting, bot control) $\to$ Application Load Balancer (TLS 1.3).
+3. **Backend Modular Monolith (NestJS / Node.js 20):**
+   - Clean Architecture with strict domain module boundaries (`Auth`, `Properties`, `Tenancies`, `Billing`, `Ledger`, `Complaints`, `Compensation`, `Feedback`, `Notifications`, `AI Gateway`).
+4. **Data Persistence & Caching Tier:**
+   - **PostgreSQL 16 Enterprise:** Relational ACID storage, PostGIS geospatial indexing (`GIST`), and `pgvector` semantic embeddings.
+   - **Redis 7.2 Cluster:** Session cache, phone OTP rate limits, distributed mutex locks, and BullMQ queues.
+   - **AWS S3 / Cloudflare R2:** Encrypted storage for KYC government IDs, property room photos, and PDF receipts.
+5. **Asynchronous Background Processing (BullMQ Cluster):**
+   - Independent auto-scaling worker cluster for billing cron generation, SLA countdown heartbeat, and push notification dispatching.
 
-    subgraph Backend [Stayra Core Modular Monolith (NestJS / Node.js)]
-        subgraph Core Modules
-            MOD_AUTH["Auth & Session Module\n(JWT, OTP, RBAC)"]
-            MOD_PROP["Property & Inventory Module\n(Rooms, Beds, PostGIS)"]
-            MOD_TEN["Tenancy Lifecycle Module\n(Agreements, Transitions)"]
-            MOD_COMP["Complaint & SLA Module\n(Ticket FSM, Escalation)"]
-            MOD_LEDG["Financial Ledger & Billing\n(Double-Entry, Invoices)"]
-            MOD_FEED["Feedback & Reputation\n(Multi-factor Scoring)"]
-            MOD_NOTIF["Notification Module\n(FCM, APNs, WhatsApp)"]
-        end
+---
 
-        subgraph AI Layer
-            AI_GATEWAY["AI Gateway & Tool Calling Engine"]
-            subgraph Specialized Agents
-                AGT_REC["Recommendation Agent"]
-                AGT_COMP["Complaint Classifier"]
-                AGT_BILL["Billing Anomaly Agent"]
-                AGT_OWN["Owner Copilot"]
-            end
-        end
-    end
+### 1.2 End-to-End Visual Data Flow Diagram (DFD Level 1)
 
-    subgraph Data Layer [Persistence & Caching]
-        PG[(PostgreSQL 16 + PostGIS + pgvector)]
-        REDIS[(Redis 7.2 Cluster\nCache, Rate Limits, BullMQ)]
-        S3[(AWS S3 / Cloudflare R2\nPhotos, KYC, Invoices)]
-    end
+The following visual data flow diagram illustrates how data travels across all primary resident and owner touchpoints in the Stayra ecosystem:
 
-    subgraph Workers [Async Processing (BullMQ Workers)]
-        W_BILL["Billing Generation Worker"]
-        W_SLA["SLA Breach & Credit Monitor"]
-        W_NOTIF["Push Notification Dispatcher"]
-        W_AI["AI Async Task Worker"]
-    end
+![Stayra End-to-End Visual Data Flow Diagram](./docs/architecture/assets/02_end_to_end_data_flow.svg)
 
-    subgraph External [External Services]
-        EXT_PAY["Razorpay / Stripe Payment Gateway"]
-        EXT_SMS["Twilio / MSG91 (OTP & SMS)"]
-        EXT_LLM["LLM Providers (OpenAI / Anthropic / Gemini)"]
-    end
-
-    Client Layer -->|HTTPS / WSS| WAF --> ALB --> Backend
-    Backend --> PG
-    Backend --> REDIS
-    Backend --> S3
-    Backend --> EXT_PAY
-    Backend --> EXT_SMS
-    AI_GATEWAY --> EXT_LLM
-
-    REDIS <--> Workers
-    Workers --> PG
-    Workers --> EXT_PAY
-    Workers --> EXT_SMS
-```
+#### End-to-End Data Pipeline Execution Stages:
+| Stage | Triggering Event | Primary Data Ingest | Processing Engine | Output / Side Effect |
+|---|---|---|---|---|
+| **1. Discovery** | Resident natural search or map drag | Lat/Lng coordinates, budget range, sharing type, curfew | PostGIS `ST_DWithin` spatial query + Vector search | Ranked list of verified PGs with multidimensional reputation |
+| **2. Tenancy** | Resident requests bed | Resident profile ID, KYC status, desired move-in date | Tenancy State Machine (`REQUESTED` $\to$ `APPROVED`) | Bed status toggled to `RESERVED`, digital contract generated |
+| **3. Rent & Ledger** | 1st of month billing cron | Agreed base rent + metered electricity units - SLA credits | Double-entry journal builder with zero-sum invariant | Itemized PDF invoice generated, push alert sent, Razorpay order created |
+| **4. Complaint** | Resident raises maintenance ticket | Category, description text, photo/audio attachment | AI Complaint Classifier Agent | Ticket stored, severity tagged, SLA target timestamp calculated |
+| **5. SLA Credit** | BullMQ heartbeat (every 15 min) | Open tickets where `NOW() > sla_target_time` | Pure TypeScript deterministic compensation math | Service credit posted to pending ledger, resident & owner alerted |
+| **6. Reputation** | Staff resolves ticket with photo | Resident post-resolution ratings (speed, cleanliness, staff) | Dynamic reputation scoring algorithm | Property's living reputation score updated; feeds back into Stage 1 |
 
 ---
 
@@ -176,39 +144,27 @@ Stayra uses **PostgreSQL 16** with:
 - **`uuid-ossp`** or `gen_random_uuid()`: Globally unique non-sequential keys.
 - **`pgvector`**: Property embeddings for natural language search & semantic matching.
 
-### 3.1 Entity Relationship Diagram
+### 3.1 Visual Entity Relationship Architecture (ERD)
 
-```mermaid
-erDiagram
-    USERS ||--o{ RESIDENT_PROFILES : has
-    USERS ||--o{ OWNER_PROFILES : has
-    USERS ||--o{ STAFF_PROFILES : has
-    
-    OWNER_PROFILES ||--o{ PROPERTIES : owns
-    PROPERTIES ||--o{ ROOMS : contains
-    ROOMS ||--o{ BEDS : contains
-    PROPERTIES ||--o{ SLA_POLICIES : configures
-    PROPERTIES ||--o{ FOOD_MENUS : serves
-    
-    RESIDENT_PROFILES ||--o{ TENANCIES : signs
-    BEDS ||--o{ TENANCIES : assigned_to
-    
-    TENANCIES ||--o{ BILLS : generates
-    BILLS ||--o{ BILL_ITEMS : itemizes
-    BILLS ||--o{ PAYMENTS : settles
-    
-    TENANCIES ||--o{ COMPLAINTS : logs
-    COMPLAINTS ||--o{ COMPLAINT_EVENTS : tracks
-    COMPLAINTS ||--o{ COMPLAINT_ATTACHMENTS : includes
-    COMPLAINTS ||--o| SLA_BREACHES : triggers
-    SLA_BREACHES ||--o| SERVICE_COMPENSATION_CREDITS : creates
-    
-    TENANCIES ||--o{ FEEDBACK_REVIEWS : submits
-    PROPERTIES ||--o| REPUTATION_SCORES : computes
-    
-    LEDGER_ACCOUNTS ||--o{ LEDGER_ENTRIES : contains
-    SERVICE_COMPENSATION_CREDITS ||--o| LEDGER_ENTRIES : posted_as
-```
+The relational schema model below visualizes all primary entities, unique constraints, foreign keys, and double-entry ledger mappings:
+
+![Stayra Visual Entity Relationship Architecture (ERD)](./docs/architecture/assets/03_entity_relationship.svg)
+
+#### Relational Cardinality & Core Schema Mappings:
+| Source Entity | Relationship | Target Entity | Foreign Key Column | Relational Invariant |
+|---|:---:|---|---|---|
+| `users` | $1 \to 1$ | `resident_profiles` | `resident_profiles.user_id` | Generates immutable `stayra_resident_id` |
+| `users` | $1 \to 1$ | `owner_profiles` | `owner_profiles.user_id` | Enforces KYC and bank payout verification |
+| `owner_profiles` | $1 \to N$ | `properties` | `properties.owner_id` | Properties are owned and operated by verified owners |
+| `properties` | $1 \to N$ | `rooms` | `rooms.property_id` | Cascades deletion if property is decommissioned |
+| `rooms` | $1 \to N$ | `beds` | `beds.room_id` | Governs atomic bed locking (`VACANT` / `OCCUPIED`) |
+| `resident_profiles` + `beds` | $1 \to N$ | `tenancies` | `resident_id`, `bed_id` | Central nexus: 1 active resident per bed at a time |
+| `tenancies` | $1 \to N$ | `bills` | `bills.tenancy_id` | Monthly billing cycle generation |
+| `bills` | $1 \to N$ | `ledger_entries` | `reference_entity_id` | Posts balanced Debit & Credit entries |
+| `tenancies` | $1 \to N$ | `complaints` | `complaints.tenancy_id` | Tracks ticket lifecycle & SLA countdown |
+| `complaints` | $1 \to 1$ | `service_compensation_credits` | `complaint_id` | Created when ticket breaches owner SLA policy |
+| `tenancies` | $1 \to N$ | `feedback_reviews` | `feedback_reviews.tenancy_id` | Only verified active/past residents can rate |
+
 
 ### 3.2 Detailed SQL Table Definitions
 
@@ -613,28 +569,25 @@ CREATE TABLE ai_audit_logs (
 
 We follow Domain-Driven Design (DDD) principles with bounded contexts mapped directly to NestJS modules.
 
-```mermaid
-graph LR
-    subgraph Core Framework
-        HTTP[HTTP Request / Controller]
-        GUARDS[Guards: JwtAuth, Roles, ResourceOwnership]
-        PIPE[ValidationPipe: Zod / ClassValidator]
-    end
-
-    subgraph Domain Boundary
-        SVC[Domain Service]
-        REPO[TypeORM / Prisma Repository]
-        EVENT[EventEmitter2 / BullMQ Dispatcher]
-    end
-
-    subgraph Data Stores
-        DB[(PostgreSQL)]
-        CACHE[(Redis)]
-    end
-
-    HTTP --> GUARDS --> PIPE --> SVC
-    SVC --> REPO --> DB
-    SVC --> EVENT --> CACHE
+#### Modular Monolith Request Execution Pipeline:
+```
+[ Incoming HTTPS Client Request ]
+               │
+               ▼
+[ 1. Ingress & Guards Layer ] ──> JwtAuthGuard ──> RolesGuard ──> PropertyOwnershipGuard
+               │ (Pass: Authenticated & Authorized)
+               ▼
+[ 2. Validation Pipe ] ─────────> ZodValidationPipe (Strict DTO schema parsing & strip unknown)
+               │ (Pass: Clean, Typed Payload)
+               ▼
+[ 3. Domain Service Layer ] ────> Executes core business logic, state machines & invariant checks
+         │               │
+         ▼               ▼
+[ 4. Persistence ]   [ 5. Event Bus & Queues ]
+  TypeORM / Prisma        EventEmitter2 / BullMQ Dispatcher
+         │                       │
+         ▼                       ▼
+  PostgreSQL 16 Enterprise  Redis 7.2 (Cache, Session, Job Queues)
 ```
 
 ### 4.1 Module Boundary Definitions
@@ -670,6 +623,9 @@ graph LR
 - **Form Management:** React Hook Form + Zod resolvers for instant client-side validation.
 - **Styling:** Custom Design System using StyleSheet tokens or NativeWind (Tailwind CSS for React Native) supporting dynamic Dark/Light modes.
 - **Offline & Storage:** `@react-native-async-storage/async-storage` + `expo-secure-store` for cryptographic token storage.
+
+#### Mobile Client Architecture & State Synchronization Data Flow:
+![Stayra Mobile Client Architecture & State Synchronization](./docs/architecture/assets/07_mobile_client_architecture.svg)
 
 ### 5.2 Navigation Layout Hierarchy
 
@@ -741,19 +697,16 @@ Every financial action generates matching debit and credit entries inside a sing
 ### 6.2 Billing Calculation Algorithm
 $$\text{Final Payable} = \text{Base Rent} + \text{Fixed Amenities} + \sum (\Delta \text{Meter Units} \times \text{Unit Rate}) - \sum \text{Unapplied SLA Credits}$$
 
-```mermaid
-flowchart TD
-    START[1st of Month / Billing Trigger] --> FETCH_TENANCIES[Fetch All Active Tenancies]
-    FETCH_TENANCIES --> FOR_EACH[For Each Tenancy]
-    FOR_EACH --> CALC_BASE[Load Agreed Base Rent]
-    CALC_BASE --> LOAD_UTILITIES[Load Metered Utilities]
-    LOAD_UTILITIES --> LOAD_CREDITS[Query Unapplied Service Compensation Credits]
-    LOAD_CREDITS --> SUBTRACT[Compute: Net = Base + Utilities - Credits]
-    SUBTRACT --> AI_SCAN[AI Anomaly Detector Scan]
-    AI_SCAN -->|Anomaly Detected| FLAG_REVIEW[Mark Flagged & Alert Owner]
-    AI_SCAN -->|Clean| GEN_INVOICE[Generate PDF & Post Ledger Entries]
-    GEN_INVOICE --> NOTIFY[Send Push Notification & SMS]
-```
+### 6.2 Billing Calculation & Double-Entry Ledger Pipeline
+$$\text{Final Payable} = \text{Base Rent} + \text{Fixed Amenities} + \sum (\Delta \text{Meter Units} \times \text{Unit Rate}) - \sum \text{Unapplied SLA Credits}$$
+
+![Stayra Double-Entry Financial Ledger & Rent Billing Flow](./docs/architecture/assets/04_financial_ledger_billing_flow.svg)
+
+#### 4-Phase Rent & Payment Reconciliation Flow:
+1. **Invoice Compilation:** Tenancy base rate + utility metered units + fixed mess fees are ingested into a draft invoice.
+2. **SLA Credit Application:** Active unapplied records in `service_compensation_credits` are deducted from the subtotal.
+3. **Double-Entry Journal Posting:** Debit `RECEIVABLE_RESIDENT`, Credit `REVENUE_RENT` and `REVENUE_UTILITIES`. The SLA compensation registers as Debit `EXPENSE_SERVICE_COMPENSATION` and Credit `RECEIVABLE_RESIDENT`.
+4. **Idempotent Webhook Settlement:** When Razorpay emits `payment.captured`, the HMAC-SHA256 signature is verified, an atomic transaction posts Debit `ASSET_ESCROW` and Credit `RECEIVABLE_RESIDENT`, bringing the resident's net balance to exactly ₹0.00.
 
 ---
 
@@ -761,27 +714,15 @@ flowchart TD
 
 The system uses an asynchronous heartbeat worker (`BullMQ`) checking unresolved tickets every 15 minutes.
 
-```mermaid
-stateDiagram-v2
-    [*] --> OPEN: Resident submits ticket
-    OPEN --> ASSIGNED: Owner/System assigns staff
-    ASSIGNED --> IN_PROGRESS: Staff accepts task
-    
-    state SLA_MONITOR {
-        [*] --> UNDER_SLA
-        UNDER_SLA --> 50_PERCENT_REMINDER: 50% time elapsed
-        50_PERCENT_REMINDER --> 80_PERCENT_WARNING: 80% time elapsed
-        80_PERCENT_WARNING --> BREACHED: SLA target timestamp passed
-    }
+![Stayra SLA Breach Monitoring & Compensation Flow](./docs/architecture/assets/05_sla_breach_compensation_flow.svg)
 
-    BREACHED --> CALC_COMPENSATION: Deterministic Rule Evaluator
-    CALC_COMPENSATION --> GENERATE_CREDIT: Create Service Credit Record
-    GENERATE_CREDIT --> LEDGER_PENDING: Post Pending Ledger Credit
-    
-    IN_PROGRESS --> RESOLVED: Staff marks resolved + photo
-    RESOLVED --> VERIFIED_CLOSED: Resident confirms resolution
-    RESOLVED --> REOPENED: Resident rejects resolution
-```
+#### SLA Ticket State Transitions & Escalation Logic:
+- `OPEN` $\to$ Ticket submitted by resident; AI categorizes severity; `sla_target_time` is set.
+- `50% Warning` $\to$ Automated push reminder to assigned property staff.
+- `80% Escalation` $\to$ High-priority alert sent to property owner & supervisor.
+- `BREACHED` $\to$ `NOW() > sla_target_time`; triggers the pure TypeScript deterministic math engine to evaluate credit.
+- `RESOLVED` $\to$ Staff uploads completion photo and notes; resident has 24h to verify or dispute.
+- `VERIFIED_CLOSED` $\to$ Resident confirms resolution; prompts for verified multidimensional rating.
 
 ### Deterministic Compensation Calculation Function
 ```typescript
@@ -833,15 +774,21 @@ Instead of a single monolithic prompt, Stayra deploys four targeted agents:
 
 ### 8.2 Security Guardrails & Tool Execution Boundaries
 
-```mermaid
-flowchart LR
-    LLM[LLM Output / Tool Call] --> GATEWAY[AI Gateway Interceptor]
-    GATEWAY --> VALIDATE{Zod Schema & Permission Check}
-    VALIDATE -- Passed --> EXECUTE[Deterministic Backend Service]
-    VALIDATE -- Failed --> REJECT[Reject & Log Security Alert]
-    EXECUTE --> AUDIT[Write to ai_audit_logs]
-    AUDIT --> RESPONSE[Return Sanitized Tool Response to LLM]
-```
+The diagram below details the four-stage AI tool-calling pipeline, parameter interception, and security guardrail enforcement:
+
+![Stayra AI Multi-Agent Gateway & Deterministic Guardrails](./docs/architecture/assets/06_ai_multi_agent_guardrails.svg)
+
+#### AI Gateway Interception & Safety Lifecycle:
+1. **Unstructured Ingest & Context Hydration:** Resident or owner prompts (text/audio) are sanitized to prevent prompt injections; tenant role and session boundaries are injected into the prompt.
+2. **LLM Tool Inference:** The model emits structured JSON function calls matching predefined schemas (`create_ticket_draft`, `search_pgs_by_geo`, etc.).
+3. **AI Gateway Interceptor:**
+   - Evaluates caller permissions (e.g., resident cannot invoke owner tools).
+   - Validates all argument types with strict **Zod schemas**. Any extraneous keys trigger an immediate rejection.
+   - **Enforces Zero Direct Database Mutation:** LLMs cannot execute raw SQL or mutate `ledger_entries`.
+4. **Deterministic Backend Execution & Audit:**
+   - Validated arguments are passed to pure NestJS service methods.
+   - Every invocation logs token counts, latency, and sanitized arguments into `ai_audit_logs`.
+
 
 **Non-Negotiable AI Rules:**
 1. **Read-Only or Draft-Only:** AI agents can only *read* database state or create *draft* records (e.g., ticket draft, anomaly alert).
@@ -981,27 +928,31 @@ volumes:
   minio_data:
 ```
 
+### 12.1 Production Cloud Infrastructure Topology (Multi-AZ AWS Architecture)
+
+The diagram below outlines the production AWS multi-AZ VPC architecture across compute, database replicas, caching, and observability:
+
+![Stayra Production Cloud Infrastructure & Deployment Topology](./docs/architecture/assets/08_deployment_infrastructure.svg)
+
 ---
 
 ## 13. Step-by-Step Implementation Strategy
 
 Now that the system design and PRD are established, implementation proceeds in sequential milestones:
 
-```mermaid
-graph TD
-    M1["Milestone 1: Repository Scaffolding\n- Monorepo setup (npm workspaces)\n- Docker compose (PostGIS, Redis, MinIO)\n- NestJS backend & Expo mobile init"]
-    
-    M2["Milestone 2: Database Schema & Auth Core\n- Prisma / TypeORM migrations\n- Phone OTP + JWT Auth with Refresh Rotation\n- RBAC Guards (Resident, Owner, Staff)"]
-    
-    M3["Milestone 3: Property & PostGIS Search\n- PG inventory models (Rooms, Beds, Amenities)\n- PostGIS radius query (/properties/search)\n- Mobile Discovery map & list views"]
-    
-    M4["Milestone 4: Tenancy & Rent Ledger\n- Tenancy state machine\n- Double-entry ledger schema & models\n- Automated bill calculation & Razorpay checkout"]
-    
-    M5["Milestone 5: Complaints, SLA & Rent Credits\n- Ticket lifecycle & photo upload\n- BullMQ SLA monitor worker\n- Auto service credit engine"]
-    
-    M6["Milestone 6: AI Gateway & Agents\n- AI Gateway with tool registry\n- Recommendation Agent & Ticket Classifier\n- Billing Anomaly Detector"]
-
-    M1 --> M2 --> M3 --> M4 --> M5 --> M6
 ```
+[ Milestone 1 ] ──> [ Milestone 2 ] ──> [ Milestone 3 ] ──> [ Milestone 4 ] ──> [ Milestone 5 ] ──> [ Milestone 6 ]
+  Repo Scaffold       Auth & RBAC         PostGIS & Map       Tenancy & Ledger     SLA & Rent Credit    AI Gateway
+```
+
+#### Detailed Milestone Deliverables Matrix:
+| Milestone | Focus Area | Backend Deliverables | Mobile Deliverables | Infrastructure Deliverables |
+|---|---|---|---|---|
+| **M1: Scaffolding** | Monorepo Setup | NestJS app init, shared types package | Expo Router v3 init, atomic components | Docker Compose (PostGIS, Redis, MinIO) |
+| **M2: Identity & Auth** | Auth, KYC & RBAC | Phone OTP, JWT token rotation, Stayra ID | Login, OTP verify, role selector | Redis rate limiter & token revocation cache |
+| **M3: Discovery** | PostGIS Geospatial | `/properties/search` with `ST_DWithin` | Interactive map, radius filters, PG cards | Spatial indexing (`GIST`) & seed data |
+| **M4: Tenancy & Rent** | Double-Entry Ledger | Tenancy state machine, billing cron | Active tenancy tab, Razorpay UPI pay | Idempotent webhook verification |
+| **M5: SLA & Credits** | Maintenance & SLAs | BullMQ 15m heartbeat, deterministic credit | Ticket kanban, photo capture, countdown | Push alerts (FCM/APNs) & SMS dispatch |
+| **M6: AI Agents** | Multi-Agent Gateway | Tool registry, Zod interceptor, audit logs | Floating AI Copilot drawer | Vector search with `pgvector` |
 
 Both documents—[PRD.md](file:///Users/shipsy/Desktop/Stayra/PRD.md) and [TECHNICAL_ARCHITECTURE.md](file:///Users/shipsy/Desktop/Stayra/TECHNICAL_ARCHITECTURE.md)—are now established as the foundational blueprints for building Stayra.

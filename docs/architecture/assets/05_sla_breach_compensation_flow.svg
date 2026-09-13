@@ -1,0 +1,247 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900" width="100%" height="100%">
+
+<defs>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap');
+        * { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .shadow { filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08)); }
+        .shadow-lg { filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.12)); }
+    </style>
+    
+    <filter id="card-shadow" x="-10%" y="-10%" width="120%" height="120%">
+        <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.06" flood-color="#0F172A"/>
+    </filter>
+
+    <marker id="arrow-indigo" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#6366F1"/>
+    </marker>
+    <marker id="arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10B981"/>
+    </marker>
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#F59E0B"/>
+    </marker>
+    <marker id="arrow-rose" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#F43F5E"/>
+    </marker>
+    <marker id="arrow-slate" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#64748B"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#0284C7"/>
+    </marker>
+
+    <!-- Gradients -->
+    <linearGradient id="bg-canvas" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#F8FAFC"/>
+        <stop offset="100%" stop-color="#F1F5F9"/>
+    </linearGradient>
+    <linearGradient id="grad-indigo" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#6366F1"/>
+        <stop offset="100%" stop-color="#4F46E5"/>
+    </linearGradient>
+    <linearGradient id="grad-emerald" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#10B981"/>
+        <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="grad-amber" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#F59E0B"/>
+        <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <linearGradient id="grad-rose" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#F43F5E"/>
+        <stop offset="100%" stop-color="#E11D48"/>
+    </linearGradient>
+    <linearGradient id="grad-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#0EA5E9"/>
+        <stop offset="100%" stop-color="#0284C7"/>
+    </linearGradient>
+    <linearGradient id="grad-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#A855F7"/>
+        <stop offset="100%" stop-color="#7E22CE"/>
+    </linearGradient>
+    <linearGradient id="grad-dark" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#1E293B"/>
+        <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+</defs>
+
+    <!-- Background Canvas -->
+    <rect width="1400" height="900" fill="url(#bg-canvas)" rx="16"/>
+    <rect x="20" y="20" width="1360" height="860" fill="none" stroke="#E2E8F0" stroke-width="1.5" rx="12"/>
+
+    <!-- Header -->
+    <rect x="40" y="40" width="1320" height="60" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" rx="8" filter="url(#card-shadow)"/>
+    <circle cx="70" cy="70" r="16" fill="url(#grad-rose)"/>
+    <text x="70" y="75" fill="#FFFFFF" font-weight="800" font-size="14" text-anchor="middle">⏱</text>
+    <text x="100" y="68" fill="#0F172A" font-weight="700" font-size="18">Stayra — SLA Breach Monitoring &amp; Deterministic Rent Compensation</text>
+    <text x="100" y="86" fill="#64748B" font-weight="500" font-size="13">Automated Escalation, BullMQ Heartbeat, and Service-Level-Based Ledger Credits</text>
+    <rect x="1190" y="55" width="150" height="30" fill="#FFE4E6" rx="6"/>
+    <text x="1265" y="74" fill="#E11D48" font-weight="600" font-size="12" text-anchor="middle">SLA ENGINE</text>
+
+    <!-- Top Lifecycle State Machine Flow -->
+    <g transform="translate(50, 125)">
+        <rect width="1300" height="150" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" rx="10" filter="url(#card-shadow)"/>
+        <path d="M 0 10 Q 0 0 10 0 L 1290 0 Q 1300 0 1300 10 L 1300 35 L 0 35 Z" fill="#F8FAFC"/>
+        <text x="20" y="24" fill="#0F172A" font-weight="700" font-size="13">COMPLAINT TICKET LIFECYCLE &amp; ESCALATION TIMELINE</text>
+
+        <!-- Node 1: Ticket Raised -->
+        <rect x="30" y="55" width="190" height="75" fill="#EEF2FF" stroke="#6366F1" stroke-width="1.5" rx="6"/>
+        <text x="45" y="80" fill="#4F46E5" font-weight="700" font-size="12">1. Ticket Raised</text>
+        <text x="45" y="98" fill="#334155" font-size="10">WiFi Down (24h SLA)</text>
+        <text x="45" y="114" fill="#64748B" font-size="9">Timestamp: Day 1, 10:00 AM</text>
+
+        <path d="M 220 92 L 255 92" stroke="#6366F1" stroke-width="2" marker-end="url(#arrow-indigo)"/>
+
+        <!-- Node 2: 50% Warning -->
+        <rect x="260" y="55" width="190" height="75" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.5" rx="6"/>
+        <text x="275" y="80" fill="#D97706" font-weight="700" font-size="12">2. 50% SLA Elapsed</text>
+        <text x="275" y="98" fill="#334155" font-size="10">12 Hours Remaining</text>
+        <text x="275" y="114" fill="#64748B" font-size="9">Push reminder to assigned staff</text>
+
+        <path d="M 450 92 L 485 92" stroke="#F59E0B" stroke-width="2" marker-end="url(#arrow-amber)"/>
+
+        <!-- Node 3: 80% Urgent Escalation -->
+        <rect x="490" y="55" width="190" height="75" fill="#FFEDD5" stroke="#EA580C" stroke-width="1.5" rx="6"/>
+        <text x="505" y="80" fill="#C2410C" font-weight="700" font-size="12">3. 80% SLA Elapsed</text>
+        <text x="505" y="98" fill="#334155" font-size="10">Urgent Owner Alert</text>
+        <text x="505" y="114" fill="#64748B" font-size="9">Breach imminent in 4.8 hours</text>
+
+        <path d="M 680 92 L 715 92" stroke="#EA580C" stroke-width="2" marker-end="url(#arrow-rose)"/>
+
+        <!-- Node 4: SLA Breached -->
+        <rect x="720" y="55" width="220" height="75" fill="#FEE2E2" stroke="#DC2626" stroke-width="2" rx="6"/>
+        <text x="735" y="80" fill="#B91C1C" font-weight="800" font-size="12">4. SLA BREACH TRIGGERED</text>
+        <text x="735" y="98" fill="#334155" font-size="10">Target time passed (&gt;24h)</text>
+        <text x="735" y="114" fill="#DC2626" font-weight="600" font-size="9">Compensation Evaluator Awakens</text>
+
+        <path d="M 940 92 L 985 92" stroke="#DC2626" stroke-width="2" marker-end="url(#arrow-rose)"/>
+
+        <!-- Node 5: Credit Issued & Settlement -->
+        <rect x="990" y="55" width="280" height="75" fill="#ECFDF5" stroke="#10B981" stroke-width="1.5" rx="6"/>
+        <text x="1005" y="80" fill="#047857" font-weight="800" font-size="12">5. Service Credit Issued &amp; Closed</text>
+        <text x="1005" y="98" fill="#334155" font-size="10">₹100/day credited to pending ledger</text>
+        <text x="1005" y="114" fill="#059669" font-size="9">Resident verified fix; rating collected</text>
+    </g>
+
+    <!-- SECTION 2: BullMQ Heartbeat & Deterministic Compensation Flow -->
+    <g transform="translate(50, 305)">
+        <rect width="630" height="555" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" rx="10" filter="url(#card-shadow)"/>
+        <path d="M 0 10 Q 0 0 10 0 L 620 0 Q 630 0 630 10 L 630 38 L 0 38 Z" fill="#F8FAFC"/>
+        <text x="20" y="25" fill="#0F172A" font-weight="700" font-size="14">BullMQ 15-Minute Heartbeat Worker Architecture</text>
+
+        <g transform="translate(20, 55)">
+            <!-- Worker Loop 1 -->
+            <rect width="590" height="75" fill="#F8FAFC" stroke="#E2E8F0" rx="6"/>
+            <text x="20" y="28" fill="#4F46E5" font-weight="700" font-size="12">Step 1: BullMQ Recurring Job Fires (Every 15 mins)</text>
+            <text x="20" y="48" fill="#334155" font-size="11">Worker queries complaints WHERE status NOT IN ('RESOLVED', 'CLOSED')</text>
+            <text x="20" y="64" fill="#64748B" font-size="10">Batches up to 500 tickets with Redis distributed mutex lock to prevent duplicates</text>
+        </g>
+
+        <g transform="translate(20, 145)">
+            <!-- Worker Loop 2 -->
+            <rect width="590" height="75" fill="#F8FAFC" stroke="#E2E8F0" rx="6"/>
+            <text x="20" y="28" fill="#D97706" font-weight="700" font-size="12">Step 2: Check target_time vs NOW()</text>
+            <text x="20" y="48" fill="#334155" font-size="11">If NOW() &gt; sla_target_time AND is_sla_breached == FALSE:</text>
+            <text x="20" y="64" fill="#DC2626" font-weight="600" font-size="10">Flip is_sla_breached = TRUE; Emit TicketSlaBreachedEvent</text>
+        </g>
+
+        <g transform="translate(20, 235)">
+            <!-- Worker Loop 3 -->
+            <rect width="590" height="110" fill="#F8FAFC" stroke="#E2E8F0" rx="6"/>
+            <text x="20" y="28" fill="#DC2626" font-weight="700" font-size="12">Step 3: Execute Pure TypeScript Math Engine</text>
+            <text x="20" y="48" fill="#334155" font-size="11">const breachHours = (now - createdAt) / (1000 * 3600) - slaHours;</text>
+            <text x="20" y="66" fill="#334155" font-size="11">const breachDays = Math.ceil(breachHours / 24);</text>
+            <text x="20" y="84" fill="#047857" font-weight="600" font-size="11">const credit = Math.min(breachDays * policyRate, policyMaxCap);</text>
+            <text x="20" y="100" fill="#64748B" font-size="10">Pure deterministic execution without any external LLM calls</text>
+        </g>
+
+        <g transform="translate(20, 360)">
+            <!-- Worker Loop 4 -->
+            <rect width="590" height="85" fill="#F8FAFC" stroke="#E2E8F0" rx="6"/>
+            <text x="20" y="28" fill="#059669" font-weight="700" font-size="12">Step 4: Atomic Ledger Credit Record</text>
+            <text x="20" y="48" fill="#334155" font-size="11">Insert into service_compensation_credits (status: 'PENDING')</text>
+            <text x="20" y="68" fill="#334155" font-size="11">Tag complaint_id to prevent double evaluation on next heartbeat cycle</text>
+        </g>
+
+        <g transform="translate(20, 460)">
+            <!-- Worker Loop 5 -->
+            <rect width="590" height="75" fill="#ECFDF5" stroke="#6EE7B7" rx="6"/>
+            <text x="20" y="28" fill="#047857" font-weight="800" font-size="12">Step 5: Automated Resident &amp; Owner Notifications</text>
+            <text x="20" y="48" fill="#065F46" font-size="11">Resident receives: "SLA breached for WiFi ticket. ₹100 credit added."</text>
+            <text x="20" y="64" fill="#065F46" font-size="10">Owner alerted with escalation report &amp; penalty audit note</text>
+        </g>
+    </g>
+
+    <!-- SECTION 3: Configurable Property SLA Matrix Table -->
+    <g transform="translate(710, 305)">
+        <rect width="640" height="555" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" rx="10" filter="url(#card-shadow)"/>
+        <path d="M 0 10 Q 0 0 10 0 L 630 0 Q 640 0 640 10 L 640 38 L 0 38 Z" fill="#F8FAFC"/>
+        <text x="20" y="25" fill="#0F172A" font-weight="700" font-size="14">Configurable Property SLA &amp; Compensation Matrix</text>
+
+        <!-- Table Header -->
+        <rect x="20" y="55" width="600" height="35" fill="#EEF2FF" rx="4"/>
+        <text x="35" y="77" fill="#4F46E5" font-weight="700" font-size="11">CATEGORY</text>
+        <text x="175" y="77" fill="#4F46E5" font-weight="700" font-size="11">SEVERITY</text>
+        <text x="270" y="77" fill="#4F46E5" font-weight="700" font-size="11">SLA HOURS</text>
+        <text x="375" y="77" fill="#4F46E5" font-weight="700" font-size="11">COMPENSATION</text>
+        <text x="520" y="77" fill="#4F46E5" font-weight="700" font-size="11">MAX CAP</text>
+
+        <!-- Row 1: Power Outage -->
+        <rect x="20" y="98" width="600" height="42" fill="#F8FAFC" stroke="#E2E8F0" rx="4"/>
+        <text x="35" y="124" fill="#0F172A" font-weight="600" font-size="11">⚡ Power / MCB</text>
+        <text x="175" y="124" fill="#DC2626" font-weight="700" font-size="10">CRITICAL</text>
+        <text x="270" y="124" fill="#0F172A" font-size="11">4 Hours</text>
+        <text x="375" y="124" fill="#059669" font-weight="600" font-size="11">₹250 / day</text>
+        <text x="520" y="124" fill="#64748B" font-size="11">₹1,500</text>
+
+        <!-- Row 2: Water Outage -->
+        <rect x="20" y="148" width="600" height="42" fill="#FFFFFF" stroke="#E2E8F0" rx="4"/>
+        <text x="35" y="174" fill="#0F172A" font-weight="600" font-size="11">🚰 Water Supply</text>
+        <text x="175" y="174" fill="#DC2626" font-weight="700" font-size="10">CRITICAL</text>
+        <text x="270" y="174" fill="#0F172A" font-size="11">4 Hours</text>
+        <text x="375" y="174" fill="#059669" font-weight="600" font-size="11">₹300 / day</text>
+        <text x="520" y="174" fill="#64748B" font-size="11">₹2,000</text>
+
+        <!-- Row 3: WiFi / Internet -->
+        <rect x="20" y="198" width="600" height="42" fill="#F8FAFC" stroke="#E2E8F0" rx="4"/>
+        <text x="35" y="224" fill="#0F172A" font-weight="600" font-size="11">📶 WiFi / Internet</text>
+        <text x="175" y="224" fill="#D97706" font-weight="700" font-size="10">MEDIUM</text>
+        <text x="270" y="224" fill="#0F172A" font-size="11">24 Hours</text>
+        <text x="375" y="224" fill="#059669" font-weight="600" font-size="11">₹100 / day</text>
+        <text x="520" y="224" fill="#64748B" font-size="11">₹1,000</text>
+
+        <!-- Row 4: Air Conditioning -->
+        <rect x="20" y="248" width="600" height="42" fill="#FFFFFF" stroke="#E2E8F0" rx="4"/>
+        <text x="35" y="274" fill="#0F172A" font-weight="600" font-size="11">❄️ AC Breakdown</text>
+        <text x="175" y="274" fill="#EA580C" font-weight="700" font-size="10">HIGH</text>
+        <text x="270" y="274" fill="#0F172A" font-size="11">24 Hours</text>
+        <text x="375" y="274" fill="#059669" font-weight="600" font-size="11">₹200 / day</text>
+        <text x="520" y="274" fill="#64748B" font-size="11">₹2,000</text>
+
+        <!-- Row 5: Geyser / Hot Water -->
+        <rect x="20" y="298" width="600" height="42" fill="#F8FAFC" stroke="#E2E8F0" rx="4"/>
+        <text x="35" y="324" fill="#0F172A" font-weight="600" font-size="11">🚿 Geyser / Heater</text>
+        <text x="175" y="324" fill="#EA580C" font-weight="700" font-size="10">HIGH</text>
+        <text x="270" y="324" fill="#0F172A" font-size="11">12 Hours</text>
+        <text x="375" y="324" fill="#059669" font-weight="600" font-size="11">₹100 / day</text>
+        <text x="520" y="324" fill="#64748B" font-size="11">₹800</text>
+
+        <!-- Row 6: Housekeeping -->
+        <rect x="20" y="348" width="600" height="42" fill="#FFFFFF" stroke="#E2E8F0" rx="4"/>
+        <text x="35" y="374" fill="#0F172A" font-weight="600" font-size="11">🧹 Housekeeping</text>
+        <text x="175" y="374" fill="#64748B" font-weight="700" font-size="10">LOW</text>
+        <text x="270" y="374" fill="#0F172A" font-size="11">12 Hours</text>
+        <text x="375" y="374" fill="#059669" font-weight="600" font-size="11">₹50 / day</text>
+        <text x="520" y="374" fill="#64748B" font-size="11">₹400</text>
+
+        <!-- Explanation Card below Table -->
+        <rect x="20" y="405" width="600" height="130" fill="#F8FAFC" stroke="#CBD5E1" rx="6"/>
+        <text x="35" y="428" fill="#0F172A" font-weight="700" font-size="12">Why This Creates Market Trust:</text>
+        <text x="35" y="450" fill="#334155" font-size="11">1. Owners define their SLA terms upfront when listing properties.</text>
+        <text x="35" y="470" fill="#334155" font-size="11">2. Residents have contractual certainty that broken services yield rent credits.</text>
+        <text x="35" y="490" fill="#334155" font-size="11">3. The PG's SLA compliance rate forms 25% of its public reputation rating.</text>
+        <text x="35" y="510" fill="#059669" font-weight="600" font-size="11">4. High compliance PGs rank higher in search algorithms automatically.</text>
+    </g>
+</svg>

@@ -1,0 +1,302 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 950" width="100%" height="100%">
+
+<defs>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap');
+        * { font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .shadow { filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08)); }
+        .shadow-lg { filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.12)); }
+    </style>
+    
+    <filter id="card-shadow" x="-10%" y="-10%" width="120%" height="120%">
+        <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.06" flood-color="#0F172A"/>
+    </filter>
+
+    <marker id="arrow-indigo" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#6366F1"/>
+    </marker>
+    <marker id="arrow-emerald" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10B981"/>
+    </marker>
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#F59E0B"/>
+    </marker>
+    <marker id="arrow-rose" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#F43F5E"/>
+    </marker>
+    <marker id="arrow-slate" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#64748B"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#0284C7"/>
+    </marker>
+
+    <!-- Gradients -->
+    <linearGradient id="bg-canvas" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#F8FAFC"/>
+        <stop offset="100%" stop-color="#F1F5F9"/>
+    </linearGradient>
+    <linearGradient id="grad-indigo" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#6366F1"/>
+        <stop offset="100%" stop-color="#4F46E5"/>
+    </linearGradient>
+    <linearGradient id="grad-emerald" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#10B981"/>
+        <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="grad-amber" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#F59E0B"/>
+        <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <linearGradient id="grad-rose" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#F43F5E"/>
+        <stop offset="100%" stop-color="#E11D48"/>
+    </linearGradient>
+    <linearGradient id="grad-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#0EA5E9"/>
+        <stop offset="100%" stop-color="#0284C7"/>
+    </linearGradient>
+    <linearGradient id="grad-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#A855F7"/>
+        <stop offset="100%" stop-color="#7E22CE"/>
+    </linearGradient>
+    <linearGradient id="grad-dark" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#1E293B"/>
+        <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+</defs>
+
+    <!-- Background Canvas -->
+    <rect width="1400" height="950" fill="url(#bg-canvas)" rx="16"/>
+    <rect x="20" y="20" width="1360" height="910" fill="none" stroke="#E2E8F0" stroke-width="1.5" rx="12"/>
+
+    <!-- Header -->
+    <rect x="40" y="40" width="1320" height="60" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" rx="8" filter="url(#card-shadow)"/>
+    <circle cx="70" cy="70" r="16" fill="url(#grad-emerald)"/>
+    <text x="70" y="75" fill="#FFFFFF" font-weight="800" font-size="14" text-anchor="middle">F</text>
+    <text x="100" y="68" fill="#0F172A" font-weight="700" font-size="18">Stayra — End-to-End Visual Data Flow Diagram (DFD Level 1)</text>
+    <text x="100" y="86" fill="#64748B" font-weight="500" font-size="13">Complete Operational Lifecycle: Discover → Tenancy → Monthly Rent → Complaints → SLA Credit → Reputation</text>
+    <rect x="1200" y="55" width="140" height="30" fill="#ECFDF5" rx="6"/>
+    <text x="1270" y="74" fill="#059669" font-weight="600" font-size="12" text-anchor="middle">DATA FLOW MAP</text>
+
+    <!-- STAGE 1: Discovery & Request -->
+    <g transform="translate(50, 125)">
+        <rect width="400" height="235" fill="#FFFFFF" stroke="#6366F1" stroke-width="1.5" rx="8" filter="url(#card-shadow)"/>
+        <path d="M 0 8 Q 0 0 8 0 L 392 0 Q 400 0 400 8 L 400 35 L 0 35 Z" fill="#EEF2FF"/>
+        <text x="16" y="24" fill="#4F46E5" font-weight="700" font-size="13">STAGE 1: GEOSPATIAL &amp; AI DISCOVERY</text>
+
+        <!-- Step 1.1 -->
+        <rect x="16" y="45" width="368" height="50" fill="#F8FAFC" stroke="#E2E8F0" rx="4"/>
+        <circle cx="34" cy="70" r="10" fill="#6366F1"/>
+        <text x="34" y="74" fill="#FFFFFF" font-size="10" font-weight="700" text-anchor="middle">1</text>
+        <text x="52" y="64" fill="#0F172A" font-weight="600" font-size="11">Search Request (Voice / Text / Filters)</text>
+        <text x="52" y="80" fill="#64748B" font-size="10">Resident inputs budget, sharing type, curfew, and location</text>
+
+        <!-- Step 1.2 -->
+        <rect x="16" y="105" width="368" height="50" fill="#F8FAFC" stroke="#E2E8F0" rx="4"/>
+        <circle cx="34" cy="130" r="10" fill="#6366F1"/>
+        <text x="34" y="134" fill="#FFFFFF" font-size="10" font-weight="700" text-anchor="middle">2</text>
+        <text x="52" y="124" fill="#0F172A" font-weight="600" font-size="11">AI Intent Extraction &amp; PostGIS Spatial Query</text>
+        <text x="52" y="140" fill="#64748B" font-size="10">ST_DWithin(coordinates, point, 3000) + Reputation rank</text>
+
+        <!-- Step 1.3 -->
+        <rect x="16" y="165" width="368" height="55" fill="#F8FAFC" stroke="#E2E8F0" rx="4"/>
+        <circle cx="34" cy="192" r="10" fill="#6366F1"/>
+        <text x="34" y="196" fill="#FFFFFF" font-size="10" font-weight="700" text-anchor="middle">3</text>
+        <text x="52" y="184" fill="#0F172A" font-weight="600" font-size="11">Interactive Map &amp; Verified PG Listings</text>
+        <text x="52" y="202" fill="#64748B" font-size="10">Displays verified photos, living reputation score, and food menu</text>
+    </g>
+
+    <!-- Connector 1 to 2 -->
+    <path d="M 450 240 L 500 240" stroke="#6366F1" stroke-width="2.5" marker-end="url(#arrow-indigo)"/>
+
+    <!-- STAGE 2: Tenancy Onboarding -->
+    <g transform="translate(500, 125)">
+        <rect width="400" height="235" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5" rx="8" filter="url(#card-shadow)"/>
+        <path d="M 0 8 Q 0 0 8 0 L 392 0 Q 400 0 400 8 L 400 35 L 0 35 Z" fill="#ECFDF5"/>
+        <text x="16" y="24" fill="#059669" font-weight="700" font-size="13">STAGE 2: DIGITAL TENANCY ONBOARDING</text>
+
+        <!-- Step 2.1 -->
+        <rect x="16" y="45" width="368" height="50" fill="#F8FAFC" stroke="#E2E8F0" rx="4"/>
+        <circle cx="34" cy="70" r="10" fill="#10B981"/>
+        <text x="34" y="74" fill="#FFFFFF" font-size="10" font-weight="700" text-anchor="middle">4</text>
+        <text x="52" y="64" fill="#0F172A" font-weight="600" font-size="11">Digital Room Request Submitted</text>
+        <text x="52" y="80" fill="#64748B" font-size="10">Resident attaches Stayra Resident ID &amp; KYC status</text>
+
+        <!-- Step 2.2 -->
+        <rect x="16" y="105" width="368" height="50" fill="#F8FAFC" stroke="#E2E8F0" rx="4"/>
+        <circle cx="34" cy="130" r="10" fill="#10B981"/>
+        <text x="34" y="134" fill="#FFFFFF" font-size="10" font-weight="700" text-anchor="middle">5</text>
+        <text x="52" y="124" fill="#0F172A" font-weight="600" font-size="11">Owner Review &amp; Instant Bed Allocation</text>
+        <text x="52" y="140" fill="#64748B" font-size="10">Bed status toggled to RESERVED; contract drafted</text>
+
+        <!-- Step 2.3 -->
+        <rect x="16" y="165" width="368" height="55" fill="#F8FAFC" stroke="#E2E8F0" rx="4"/>
+        <circle cx="34" cy="192" r="10" fill="#10B981"/>
+        <text x="34" y="196" fill="#FFFFFF" font-size="10" font-weight="700" text-anchor="middle">6</text>
+        <text x="52" y="184" fill="#0F172A" font-weight="600" font-size="11">Deposit Payment &amp; Agreement Signed</text>
+        <text x="52" y="202" fill="#64748B" font-size="10">Bed status moves to OCCUPIED; tenancy status = ACTIVE</text>
+    </g>
+
+    <!-- Connector 2 to 3 -->
+    <path d="M 900 240 L 950 240" stroke="#10B981" stroke-width="2.5" marker-end="url(#arrow-emerald)"/>
+
+    <!-- STAGE 3: Rent Automation & Ledger -->
+    <g transform="translate(950, 125)">
+        <rect width="400" height="235" fill="#FFFFFF" stroke="#F59E0B" stroke-width="1.5" rx="8" filter="url(#card-shadow)"/>
+        <path d="M 0 8 Q 0 0 8 0 L 392 0 Q 400 0 400 8 L 400 35 L 0 35 Z" fill="#FFFBEB"/>
+        <text x="16" y="24" fill="#D97706" font-weight="700" font-size="13">STAGE 3: RENT AUTOMATION &amp; LEDGER</text>
+
+        <!-- Step 3.1 -->
+        <rect x="16" y="45" width="368" height="50" fill="#F8FAFC" stroke="#E2E8F0" rx="4"/>
+        <circle cx="34" cy="70" r="10" fill="#F59E0B"/>
+        <text x="34" y="74" fill="#FFFFFF" font-size="10" font-weight="700" text-anchor="middle">7</text>
+        <text x="52" y="64" fill="#0F172A" font-weight="600" font-size="11">Automated Monthly Billing Cron (1st of Mo)</text>
+        <text x="52" y="80" fill="#64748B" font-size="10">Loads Agreed Rent + Metered Electricity + Food charges</text>
+
+        <!-- Step 3.2 -->
+        <rect x="16" y="105" width="368" height="50" fill="#F8FAFC" stroke="#E2E8F0" rx="4"/>
+        <circle cx="34" cy="130" r="10" fill="#F59E0B"/>
+        <text x="34" y="134" fill="#FFFFFF" font-size="10" font-weight="700" text-anchor="middle">8</text>
+        <text x="52" y="124" fill="#0F172A" font-weight="600" font-size="11">Deduct Accumulated SLA Compensation</text>
+        <text x="52" y="140" fill="#64748B" font-size="10">Subtracts unapplied service credits directly from total</text>
+
+        <!-- Step 3.3 -->
+        <rect x="16" y="165" width="368" height="55" fill="#F8FAFC" stroke="#E2E8F0" rx="4"/>
+        <circle cx="34" cy="192" r="10" fill="#F59E0B"/>
+        <text x="34" y="196" fill="#FFFFFF" font-size="10" font-weight="700" text-anchor="middle">9</text>
+        <text x="52" y="184" fill="#0F172A" font-weight="600" font-size="11">Double-Entry Posting &amp; Payment Gateway</text>
+        <text x="52" y="202" fill="#64748B" font-size="10">Razorpay webhook reconciles ledger to 0 balance</text>
+    </g>
+
+    <!-- Downward Route from Stage 3 to Stage 4 -->
+    <path d="M 1150 360 L 1150 410" stroke="#F59E0B" stroke-width="2.5" marker-end="url(#arrow-amber)"/>
+
+    <!-- STAGE 4: Complaint & AI Triage -->
+    <g transform="translate(950, 410)">
+        <rect width="400" height="235" fill="#FFFFFF" stroke="#F43F5E" stroke-width="1.5" rx="8" filter="url(#card-shadow)"/>
+        <path d="M 0 8 Q 0 0 8 0 L 392 0 Q 400 0 400 8 L 400 35 L 0 35 Z" fill="#FFE4E6"/>
+        <text x="16" y="24" fill="#E11D48" font-weight="700" font-size="13">STAGE 4: COMPLAINT &amp; AI TRIAGE</text>
+
+        <!-- Step 4.1 -->
+        <rect x="16" y="45" width="368" height="50" fill="#F8FAFC" stroke="#E2E8F0" rx="4"/>
+        <circle cx="34" cy="70" r="10" fill="#F43F5E"/>
+        <text x="34" y="74" fill="#FFFFFF" font-size="10" font-weight="700" text-anchor="middle">10</text>
+        <text x="52" y="64" fill="#0F172A" font-weight="600" font-size="11">Resident Logs Complaint (Text / Photo / Audio)</text>
+        <text x="52" y="80" fill="#64748B" font-size="10">e.g., "WiFi down on 3rd floor since yesterday afternoon"</text>
+
+        <!-- Step 4.2 -->
+        <rect x="16" y="105" width="368" height="50" fill="#F8FAFC" stroke="#E2E8F0" rx="4"/>
+        <circle cx="34" cy="130" r="10" fill="#F43F5E"/>
+        <text x="34" y="134" fill="#FFFFFF" font-size="10" font-weight="700" text-anchor="middle">11</text>
+        <text x="52" y="124" fill="#0F172A" font-weight="600" font-size="11">AI Classification &amp; Severity Assignment</text>
+        <text x="52" y="140" fill="#64748B" font-size="10">Detects category: WIFI, Severity: MEDIUM, SLA: 24 Hours</text>
+
+        <!-- Step 4.3 -->
+        <rect x="16" y="165" width="368" height="55" fill="#F8FAFC" stroke="#E2E8F0" rx="4"/>
+        <circle cx="34" cy="192" r="10" fill="#F43F5E"/>
+        <text x="34" y="196" fill="#FFFFFF" font-size="10" font-weight="700" text-anchor="middle">12</text>
+        <text x="52" y="184" fill="#0F172A" font-weight="600" font-size="11">Ticket Broadcast to Property Staff</text>
+        <text x="52" y="202" fill="#64748B" font-size="10">Push alerts sent to staff; SLA countdown timer starts</text>
+    </g>
+
+    <!-- Connector 4 to 5 (Going Left) -->
+    <path d="M 950 527 L 900 527" stroke="#F43F5E" stroke-width="2.5" marker-end="url(#arrow-rose)"/>
+
+    <!-- STAGE 5: SLA Breach & Rent Compensation Engine -->
+    <g transform="translate(500, 410)">
+        <rect width="400" height="235" fill="#FFFFFF" stroke="#DC2626" stroke-width="1.5" rx="8" filter="url(#card-shadow)"/>
+        <path d="M 0 8 Q 0 0 8 0 L 392 0 Q 400 0 400 8 L 400 35 L 0 35 Z" fill="#FEE2E2"/>
+        <text x="16" y="24" fill="#B91C1C" font-weight="700" font-size="13">STAGE 5: SLA BREACH &amp; COMPENSATION ENGINE</text>
+
+        <!-- Step 5.1 -->
+        <rect x="16" y="45" width="368" height="50" fill="#F8FAFC" stroke="#E2E8F0" rx="4"/>
+        <circle cx="34" cy="70" r="10" fill="#DC2626"/>
+        <text x="34" y="74" fill="#FFFFFF" font-size="10" font-weight="700" text-anchor="middle">13</text>
+        <text x="52" y="64" fill="#0F172A" font-weight="600" font-size="11">BullMQ Worker Heartbeat (Every 15 mins)</text>
+        <text x="52" y="80" fill="#64748B" font-size="10">Scans all open tickets against configured sla_target_time</text>
+
+        <!-- Step 5.2 -->
+        <rect x="16" y="105" width="368" height="50" fill="#F8FAFC" stroke="#E2E8F0" rx="4"/>
+        <circle cx="34" cy="130" r="10" fill="#DC2626"/>
+        <text x="34" y="134" fill="#FFFFFF" font-size="10" font-weight="700" text-anchor="middle">14</text>
+        <text x="52" y="124" fill="#0F172A" font-weight="600" font-size="11">Deterministic Compensation Calculation</text>
+        <text x="52" y="140" fill="#64748B" font-size="10">Formula: ceil(breach_hours / 24) × ₹100/day policy rate</text>
+
+        <!-- Step 5.3 -->
+        <rect x="16" y="165" width="368" height="55" fill="#F8FAFC" stroke="#E2E8F0" rx="4"/>
+        <circle cx="34" cy="192" r="10" fill="#DC2626"/>
+        <text x="34" y="196" fill="#FFFFFF" font-size="10" font-weight="700" text-anchor="middle">15</text>
+        <text x="52" y="184" fill="#0F172A" font-weight="600" font-size="11">Service Credit Issued to Ledger</text>
+        <text x="52" y="202" fill="#64748B" font-size="10">Resident notified: "SLA breached. ₹100 credit credited."</text>
+    </g>
+
+    <!-- Connector 5 to 6 (Going Left) -->
+    <path d="M 500 527 L 450 527" stroke="#DC2626" stroke-width="2.5" marker-end="url(#arrow-rose)"/>
+
+    <!-- STAGE 6: Feedback & Dynamic PG Reputation -->
+    <g transform="translate(50, 410)">
+        <rect width="400" height="235" fill="#FFFFFF" stroke="#059669" stroke-width="1.5" rx="8" filter="url(#card-shadow)"/>
+        <path d="M 0 8 Q 0 0 8 0 L 392 0 Q 400 0 400 8 L 400 35 L 0 35 Z" fill="#D1FAE5"/>
+        <text x="16" y="24" fill="#047857" font-weight="700" font-size="13">STAGE 6: FEEDBACK &amp; LIVING REPUTATION</text>
+
+        <!-- Step 6.1 -->
+        <rect x="16" y="45" width="368" height="50" fill="#F8FAFC" stroke="#E2E8F0" rx="4"/>
+        <circle cx="34" cy="70" r="10" fill="#059669"/>
+        <text x="34" y="74" fill="#FFFFFF" font-size="10" font-weight="700" text-anchor="middle">16</text>
+        <text x="52" y="64" fill="#0F172A" font-weight="600" font-size="11">Staff Resolves Ticket with Photo Evidence</text>
+        <text x="52" y="80" fill="#64748B" font-size="10">Resident confirms fix or rejects within 24 hours</text>
+
+        <!-- Step 6.2 -->
+        <rect x="16" y="105" width="368" height="50" fill="#F8FAFC" stroke="#E2E8F0" rx="4"/>
+        <circle cx="34" cy="130" r="10" fill="#059669"/>
+        <text x="34" y="134" fill="#FFFFFF" font-size="10" font-weight="700" text-anchor="middle">17</text>
+        <text x="52" y="124" fill="#0F172A" font-weight="600" font-size="11">Verified Resident Experience Rating</text>
+        <text x="52" y="140" fill="#64748B" font-size="10">Speed, Cleanliness, Staff Courtesy, and Problem Solved</text>
+
+        <!-- Step 6.3 -->
+        <rect x="16" y="165" width="368" height="55" fill="#F8FAFC" stroke="#E2E8F0" rx="4"/>
+        <circle cx="34" cy="192" r="10" fill="#059669"/>
+        <text x="34" y="196" fill="#FFFFFF" font-size="10" font-weight="700" text-anchor="middle">18</text>
+        <text x="52" y="184" fill="#0F172A" font-weight="600" font-size="11">Living PG Reputation Score Updated</text>
+        <text x="52" y="202" fill="#64748B" font-size="10">Adherence % updated; directly feeds back into Stage 1 ranking</text>
+    </g>
+
+    <!-- Feedback Loop Upward Arrow from Stage 6 back to Stage 1 -->
+    <path d="M 250 410 L 250 360" stroke="#059669" stroke-width="2.5" marker-end="url(#arrow-emerald)"/>
+
+    <!-- Bottom Architecture Ledger Invariant Summary -->
+    <g transform="translate(50, 680)">
+        <rect width="1300" height="230" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" rx="10" filter="url(#card-shadow)"/>
+        <path d="M 0 10 Q 0 0 10 0 L 1290 0 Q 1300 0 1300 10 L 1300 40 L 0 40 Z" fill="#F8FAFC"/>
+        <text x="24" y="26" fill="#0F172A" font-weight="700" font-size="14">CORE DATA INTEGRITY &amp; SECURITY PROTOCOLS</text>
+
+        <g transform="translate(24, 60)">
+            <rect width="390" height="150" fill="#F8FAFC" stroke="#E2E8F0" rx="6"/>
+            <text x="16" y="26" fill="#4F46E5" font-weight="700" font-size="12">1. Double-Entry Immutability</text>
+            <text x="16" y="48" fill="#334155" font-size="11">• Balance is never a single mutable column</text>
+            <text x="16" y="68" fill="#334155" font-size="11">• Every transaction logs paired Debit &amp; Credit</text>
+            <text x="16" y="88" fill="#334155" font-size="11">• Idempotency keys prevent double charge</text>
+            <text x="16" y="108" fill="#334155" font-size="11">• Tamper-proof audit logs for compliance</text>
+        </g>
+
+        <g transform="translate(450, 60)">
+            <rect width="390" height="150" fill="#F8FAFC" stroke="#E2E8F0" rx="6"/>
+            <text x="16" y="26" fill="#DC2626" font-weight="700" font-size="12">2. SLA Rent Credit Automation</text>
+            <text x="16" y="48" fill="#334155" font-size="11">• Owners configure policy upfront in agreement</text>
+            <text x="16" y="68" fill="#334155" font-size="11">• Timers tracked independently by BullMQ</text>
+            <text x="16" y="88" fill="#334155" font-size="11">• Pure TypeScript math (no LLM hallucination)</text>
+            <text x="16" y="108" fill="#334155" font-size="11">• Credits automatically subtract from next bill</text>
+        </g>
+
+        <g transform="translate(876, 60)">
+            <rect width="400" height="150" fill="#F8FAFC" stroke="#E2E8F0" rx="6"/>
+            <text x="16" y="26" fill="#059669" font-weight="700" font-size="12">3. Persistent Stayra Resident ID</text>
+            <text x="16" y="48" fill="#334155" font-size="11">• Single persistent ID (STR-RES-XXXXXX)</text>
+            <text x="16" y="68" fill="#334155" font-size="11">• Preserves verified KYC and payment reliability</text>
+            <text x="16" y="88" fill="#334155" font-size="11">• Data minimization: Past owners have zero</text>
+            <text x="16" y="106" fill="#334155" font-size="11">  access to future tenancies or private reviews</text>
+        </g>
+    </g>
+</svg>
