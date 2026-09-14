@@ -1,0 +1,27 @@
+{
+  "name": "stayra-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Stayra — Smart stays. Fair rent. Better living. AI-Native PG & Accommodation Ecosystem",
+  "author": "maddiumashankar <maddiumashankar15@gmail.com>",
+  "license": "UNLICENSED",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:backend": "npm run --workspace=apps/backend start:dev",
+    "dev:mobile": "npm run --workspace=apps/mobile start",
+    "build": "npm run --workspaces --if-present build",
+    "lint": "npm run --workspaces --if-present lint",
+    "type-check": "npm run --workspaces --if-present type-check",
+    "test": "npm run --workspaces --if-present test",
+    "docker:up": "docker compose -f docker/docker-compose.dev.yml up -d",
+    "docker:down": "docker compose -f docker/docker-compose.dev.yml down",
+    "docker:logs": "docker compose -f docker/docker-compose.dev.yml logs -f"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.4"
+  }
+}
