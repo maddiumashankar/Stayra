@@ -42,3 +42,9 @@ Thumbs.db
 
 # Local implementation tracker (as requested: kept local, never committed to remote)
 TRACKER.md
+
+# Databases & SQLite
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3

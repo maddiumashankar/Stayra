@@ -12,6 +12,9 @@
   "scripts": {
     "dev:backend": "npm run --workspace=apps/backend start:dev",
     "dev:mobile": "npm run --workspace=apps/mobile start",
+    "db:generate": "npm run --workspace=@stayra/backend prisma:generate",
+    "db:migrate": "npm run --workspace=@stayra/backend prisma:migrate",
+    "db:seed": "npm run --workspace=@stayra/backend prisma:seed",
     "build": "npm run --workspaces --if-present build",
     "lint": "npm run --workspaces --if-present lint",
     "type-check": "npm run --workspaces --if-present type-check",
@@ -22,6 +25,10 @@
   },
   "devDependencies": {
     "prettier": "^3.3.3",
+    "prisma": "^5.22.0",
     "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.22.0"
   }
 }

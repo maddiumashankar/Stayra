@@ -799,27 +799,127 @@ def generate_diagram_3():
         <text x="12" y="128" fill="#334155" font-size="11">• prompt_tokens, latency_ms, cost_usd</text>
     </g>
 
-    <!-- Foreign Key Relationship Connectors -->
-    <!-- users -> resident_profiles -->
+    <!-- TABLE 13: staff_profiles (Property Maintenance) -->
+    <g transform="translate(50, 745)">
+        <rect width="250" height="165" fill="#FFFFFF" stroke="#0284C7" stroke-width="1.5" rx="6" filter="url(#card-shadow)"/>
+        <rect width="250" height="30" fill="#E0F2FE" rx="6"/>
+        <text x="12" y="20" fill="#0369A1" font-weight="700" font-size="12">staff_profiles</text>
+        <text x="12" y="48" fill="#0F172A" font-size="11">🔑 id: UUID (PK)</text>
+        <text x="12" y="68" fill="#4F46E5" font-weight="600" font-size="11">🔗 user_id: UUID (FK)</text>
+        <text x="12" y="88" fill="#0284C7" font-weight="600" font-size="11">🔗 assigned_property_id: UUID (FK)</text>
+        <text x="12" y="108" fill="#334155" font-size="11">• job_title: Electrician, Plumber</text>
+        <text x="12" y="128" fill="#059669" font-weight="600" font-size="11">• can_resolve_tickets: TRUE</text>
+        <text x="12" y="148" fill="#64748B" font-size="10">• created_at: TIMESTAMPTZ</text>
+    </g>
+
+    <!-- ========================================== -->
+    <!-- Foreign Key Relationship Connectors & Badges -->
+    <!-- ========================================== -->
+
+    <!-- 1. users -> resident_profiles (1:1) -->
     <path d="M 175 295 L 175 325" stroke="#4F46E5" stroke-width="2" marker-end="url(#arrow-indigo)"/>
-    <!-- resident_profiles -> tenancies -->
+    <g transform="translate(175, 310)">
+        <rect x="-18" y="-8" width="36" height="16" fill="#FFFFFF" stroke="#4F46E5" stroke-width="1" rx="4"/>
+        <text y="3.5" font-size="9" fill="#4F46E5" font-weight="700" text-anchor="middle">1 : 1</text>
+    </g>
+
+    <!-- 2. users -> owner_profiles (1:1) -->
+    <path d="M 300 207 L 350 207" stroke="#059669" stroke-width="2" marker-end="url(#arrow-emerald)"/>
+    <g transform="translate(325, 207)">
+        <rect x="-18" y="-8" width="36" height="16" fill="#FFFFFF" stroke="#059669" stroke-width="1" rx="4"/>
+        <text y="3.5" font-size="9" fill="#059669" font-weight="700" text-anchor="middle">1 : 1</text>
+    </g>
+
+    <!-- 3. owner_profiles -> properties (1:N) -->
+    <path d="M 600 207 L 650 207" stroke="#0284C7" stroke-width="2" marker-end="url(#arrow-blue)"/>
+    <g transform="translate(625, 207)">
+        <rect x="-18" y="-8" width="36" height="16" fill="#FFFFFF" stroke="#0284C7" stroke-width="1" rx="4"/>
+        <text y="3.5" font-size="9" fill="#0284C7" font-weight="700" text-anchor="middle">1 : N</text>
+    </g>
+
+    <!-- 4. properties -> rooms (1:N) -->
+    <path d="M 930 195 L 980 195" stroke="#0284C7" stroke-width="2" marker-end="url(#arrow-blue)"/>
+    <g transform="translate(955, 195)">
+        <rect x="-18" y="-8" width="36" height="16" fill="#FFFFFF" stroke="#0284C7" stroke-width="1" rx="4"/>
+        <text y="3.5" font-size="9" fill="#0284C7" font-weight="700" text-anchor="middle">1 : N</text>
+    </g>
+
+    <!-- 5. rooms -> beds (1:N) -->
+    <path d="M 1105 270 L 1105 295" stroke="#0284C7" stroke-width="2" marker-end="url(#arrow-blue)"/>
+    <g transform="translate(1105, 282.5)">
+        <rect x="-18" y="-8" width="36" height="16" fill="#FFFFFF" stroke="#0284C7" stroke-width="1" rx="4"/>
+        <text y="3.5" font-size="9" fill="#0284C7" font-weight="700" text-anchor="middle">1 : N</text>
+    </g>
+
+    <!-- 6. resident_profiles -> tenancies (1:N) -->
     <path d="M 300 410 L 350 410" stroke="#4F46E5" stroke-width="2" marker-end="url(#arrow-indigo)"/>
-    <!-- properties -> tenancies -->
-    <path d="M 650 310 L 550 360" stroke="#0284C7" stroke-width="2" marker-end="url(#arrow-blue)"/>
-    <!-- beds -> tenancies -->
-    <path d="M 980 350 L 670 420" stroke="#0284C7" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
-    <!-- tenancies -> bills -->
+    <g transform="translate(325, 410)">
+        <rect x="-18" y="-8" width="36" height="16" fill="#FFFFFF" stroke="#4F46E5" stroke-width="1" rx="4"/>
+        <text y="3.5" font-size="9" fill="#4F46E5" font-weight="700" text-anchor="middle">1 : N</text>
+    </g>
+
+    <!-- 7. properties -> tenancies (1:N) -->
+    <path d="M 680 330 C 680 348, 580 342, 580 360" stroke="#0284C7" stroke-width="2" fill="none" marker-end="url(#arrow-blue)"/>
+    <g transform="translate(635, 345)">
+        <rect x="-18" y="-8" width="36" height="16" fill="#FFFFFF" stroke="#0284C7" stroke-width="1" rx="4"/>
+        <text y="3.5" font-size="9" fill="#0284C7" font-weight="700" text-anchor="middle">1 : N</text>
+    </g>
+
+    <!-- 8. beds -> tenancies (1:N) -->
+    <path d="M 980 365 C 860 365, 750 395, 670 395" stroke="#0284C7" stroke-width="2" fill="none" marker-end="url(#arrow-blue)"/>
+    <g transform="translate(830, 368)">
+        <rect x="-24" y="-8" width="48" height="16" fill="#FFFFFF" stroke="#0284C7" stroke-width="1" rx="4"/>
+        <text y="3.5" font-size="9" fill="#0284C7" font-weight="700" text-anchor="middle">1 : N (bed)</text>
+    </g>
+
+    <!-- 9. tenancies -> bills (1:N) -->
     <path d="M 670 480 L 730 480" stroke="#F59E0B" stroke-width="2" marker-end="url(#arrow-amber)"/>
-    <!-- bills -> ledger_entries -->
-    <path d="M 980 500 L 1040 500" stroke="#8B5CF6" stroke-width="2" marker-end="url(#arrow-indigo)"/>
-    <!-- tenancies -> complaints -->
-    <path d="M 350 540 L 300 540" stroke="#F43F5E" stroke-width="2" marker-end="url(#arrow-rose)"/>
-    <!-- complaints -> service_compensation_credits -->
-    <path d="M 300 660 L 350 660" stroke="#DC2626" stroke-width="2" marker-end="url(#arrow-rose)"/>
-    <!-- service_compensation_credits -> bills -->
-    <path d="M 670 700 L 750 590" stroke="#DC2626" stroke-width="2" marker-end="url(#arrow-rose)"/>
-    <!-- tenancies -> feedback_reviews -->
-    <path d="M 670 560 L 730 650" stroke="#059669" stroke-width="2" marker-end="url(#arrow-emerald)"/>
+    <g transform="translate(700, 480)">
+        <rect x="-18" y="-8" width="36" height="16" fill="#FFFFFF" stroke="#F59E0B" stroke-width="1" rx="4"/>
+        <text y="3.5" font-size="9" fill="#B45309" font-weight="700" text-anchor="middle">1 : N</text>
+    </g>
+
+    <!-- 10. bills -> ledger_entries (1:N) -->
+    <path d="M 980 505 L 1040 505" stroke="#8B5CF6" stroke-width="2" marker-end="url(#arrow-indigo)"/>
+    <g transform="translate(1010, 505)">
+        <rect x="-18" y="-8" width="36" height="16" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="1" rx="4"/>
+        <text y="3.5" font-size="9" fill="#6D28D9" font-weight="700" text-anchor="middle">1 : N</text>
+    </g>
+
+    <!-- 11. tenancies -> complaints (1:N) -->
+    <path d="M 350 550 L 300 550" stroke="#F43F5E" stroke-width="2" marker-end="url(#arrow-rose)"/>
+    <g transform="translate(325, 550)">
+        <rect x="-18" y="-8" width="36" height="16" fill="#FFFFFF" stroke="#F43F5E" stroke-width="1" rx="4"/>
+        <text y="3.5" font-size="9" fill="#E11D48" font-weight="700" text-anchor="middle">1 : N</text>
+    </g>
+
+    <!-- 12. complaints -> service_compensation_credits (1:1) -->
+    <path d="M 300 680 L 350 680" stroke="#DC2626" stroke-width="2" marker-end="url(#arrow-rose)"/>
+    <g transform="translate(325, 680)">
+        <rect x="-18" y="-8" width="36" height="16" fill="#FFFFFF" stroke="#DC2626" stroke-width="1" rx="4"/>
+        <text y="3.5" font-size="9" fill="#B91C1C" font-weight="700" text-anchor="middle">1 : 1</text>
+    </g>
+
+    <!-- 13. service_compensation_credits -> bills (Credit Offset) -->
+    <path d="M 670 710 C 720 710, 780 650, 780 590" stroke="#DC2626" stroke-width="2" stroke-dasharray="4,4" fill="none" marker-end="url(#arrow-rose)"/>
+    <g transform="translate(740, 645)">
+        <rect x="-35" y="-8" width="70" height="16" fill="#FFFFFF" stroke="#DC2626" stroke-width="1" rx="4"/>
+        <text y="3.5" font-size="9" fill="#B91C1C" font-weight="700" text-anchor="middle">Credit Offset</text>
+    </g>
+
+    <!-- 14. tenancies -> feedback_reviews (1:N) -->
+    <path d="M 670 570 C 700 570, 700 680, 730 680" stroke="#059669" stroke-width="2" fill="none" marker-end="url(#arrow-emerald)"/>
+    <g transform="translate(700, 625)">
+        <rect x="-18" y="-8" width="36" height="16" fill="#FFFFFF" stroke="#059669" stroke-width="1" rx="4"/>
+        <text y="3.5" font-size="9" fill="#047857" font-weight="700" text-anchor="middle">1 : N</text>
+    </g>
+
+    <!-- 15. staff_profiles -> complaints (1:N ticket assignment) -->
+    <path d="M 175 745 L 175 715" stroke="#0284C7" stroke-width="2" marker-end="url(#arrow-blue)"/>
+    <g transform="translate(175, 730)">
+        <rect x="-28" y="-8" width="56" height="16" fill="#FFFFFF" stroke="#0284C7" stroke-width="1" rx="4"/>
+        <text y="3.5" font-size="9" fill="#0284C7" font-weight="700" text-anchor="middle">1:N (assign)</text>
+    </g>
 </svg>"""
     return svg
 
