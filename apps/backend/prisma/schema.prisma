@@ -1,0 +1,372 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// =============================================================
+// 1. Core Users, Identity & RBAC
+// =============================================================
+
+model User {
+  id          String   @id @default(uuid())
+  phoneNumber String   @unique
+  email       String?  @unique
+  fullName    String
+  avatarUrl   String?
+  role        String   @default("RESIDENT") // RESIDENT, OWNER, STAFF, ADMIN
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  residentProfile ResidentProfile?
+  ownerProfile    OwnerProfile?
+  staffProfile    StaffProfile?
+
+  @@map("users")
+}
+
+model ResidentProfile {
+  id                      String   @id @default(uuid())
+  userId                  String   @unique
+  user                    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  stayraResidentId        String   @unique // e.g. STR-RES-202609-0842
+  emergencyContactName    String?
+  emergencyContactPhone   String?
+  kycStatus               String   @default("UNVERIFIED") // UNVERIFIED, PENDING, VERIFIED, REJECTED
+  kycDocumentType         String?  // AADHAAR, PASSPORT, PAN
+  kycDocumentS3Key        String?
+  lifetimeReputationScore Float    @default(5.0)
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
+
+  tenancies                  Tenancy[]
+  serviceCompensationCredits ServiceCompensationCredit[]
+  feedbackReviews            FeedbackReview[]
+
+  @@map("resident_profiles")
+}
+
+model OwnerProfile {
+  id                    String   @id @default(uuid())
+  userId                String   @unique
+  user                  User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  businessName          String?
+  gstin                 String?
+  bankAccountNumber     String?
+  bankIfscCode          String?
+  bankBeneficiaryName   String?
+  payoutAccountVerified Boolean  @default(false)
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  properties Property[]
+
+  @@map("owner_profiles")
+}
+
+model StaffProfile {
+  id                 String   @id @default(uuid())
+  userId             String   @unique
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  assignedPropertyId String
+  assignedProperty   Property @relation(fields: [assignedPropertyId], references: [id], onDelete: Cascade)
+  jobTitle           String   // Electrician, Plumber, Housekeeping, Manager
+  canResolveTickets  Boolean  @default(true)
+  createdAt          DateTime @default(now())
+
+  assignedComplaints Complaint[]
+
+  @@map("staff_profiles")
+}
+
+// =============================================================
+// 2. Property, Room & Bed Inventory
+// =============================================================
+
+model Property {
+  id               String   @id @default(uuid())
+  ownerId          String
+  owner            OwnerProfile @relation(fields: [ownerId], references: [id], onDelete: Restrict)
+  name             String
+  tagline          String?
+  description      String?
+  addressLine1     String
+  addressLine2     String?
+  neighborhood     String
+  city             String
+  state            String
+  postalCode       String
+  latitude         Float
+  longitude        Float
+  genderCategory   String   // MALE, FEMALE, UNISEX
+  noticePeriodDays Int      @default(30)
+  curfewTime       String?  // e.g. "11:00 PM"
+  isVerified       Boolean  @default(false)
+  rating           Float    @default(4.8)
+  reviewCount      Int      @default(0)
+  slaAdherenceRate Float    @default(96.0)
+  photos           String   @default("[]") // JSON string array of photo URLs
+  rules            String   @default("[]") // JSON string array of house rules
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  rooms           Room[]
+  amenities       PropertyAmenity[]
+  slaPolicies     SlaPolicy[]
+  staffMembers    StaffProfile[]
+  tenancies       Tenancy[]
+  complaints      Complaint[]
+  feedbackReviews FeedbackReview[]
+
+  @@map("properties")
+}
+
+model PropertyAmenity {
+  id            String   @id @default(uuid())
+  propertyId    String
+  property      Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  amenityCode   String   // WIFI, POWER_BACKUP, WASHING_MACHINE, GYM, CCTV, RO_WATER, HOUSEKEEPING
+  label         String
+  isFree        Boolean  @default(true)
+  monthlyCharge Float    @default(0.0)
+  createdAt     DateTime @default(now())
+
+  @@unique([propertyId, amenityCode])
+  @@map("property_amenities")
+}
+
+model Room {
+  id                  String   @id @default(uuid())
+  propertyId          String
+  property            Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  roomNumber          String   // e.g. "Room 204"
+  floorNumber         Int
+  sharingType         String   // SINGLE, DOUBLE, TRIPLE, FOUR_SHARING, DORMITORY
+  hasAttachedBathroom Boolean  @default(true)
+  hasAc               Boolean  @default(false)
+  hasBalcony          Boolean  @default(false)
+  baseRentPerBed      Float
+  securityDeposit     Float
+  isActive            Boolean  @default(true)
+  photos              String   @default("[]")
+  createdAt           DateTime @default(now())
+
+  beds Bed[]
+
+  @@unique([propertyId, roomNumber])
+  @@map("rooms")
+}
+
+model Bed {
+  id            String   @id @default(uuid())
+  roomId        String
+  room          Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  bedIdentifier String   // e.g. "Bed-A", "Bed-B"
+  status        String   @default("VACANT") // VACANT, RESERVED, OCCUPIED, MAINTENANCE
+  createdAt     DateTime @default(now())
+
+  tenancies Tenancy[]
+
+  @@unique([roomId, bedIdentifier])
+  @@map("beds")
+}
+
+// =============================================================
+// 3. Tenancy Lifecycle Management
+// =============================================================
+
+model Tenancy {
+  id                    String    @id @default(uuid())
+  residentId            String
+  resident              ResidentProfile @relation(fields: [residentId], references: [id], onDelete: Restrict)
+  propertyId            String
+  property              Property        @relation(fields: [propertyId], references: [id], onDelete: Restrict)
+  bedId                 String
+  bed                   Bed             @relation(fields: [bedId], references: [id], onDelete: Restrict)
+  status                String    @default("REQUESTED") // REQUESTED, OWNER_APPROVED, ACTIVE, NOTICE_PERIOD, SETTLEMENT_PENDING, COMPLETED, CANCELLED
+  startDate             DateTime
+  endDate               DateTime?
+  actualMoveOutDate     DateTime?
+  agreedRent            Float
+  agreedDeposit         Float
+  billingDayOfMonth     Int       @default(1)
+  digitalAgreementS3Key String?
+  agreementSignedAt     DateTime?
+  cancellationReason    String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  bills           Bill[]
+  complaints      Complaint[]
+  feedbackReviews FeedbackReview[]
+
+  @@map("tenancies")
+}
+
+// =============================================================
+// 4. Invoicing & Billing
+// =============================================================
+
+model Bill {
+  id                  String   @id @default(uuid())
+  tenancyId           String
+  tenancy             Tenancy  @relation(fields: [tenancyId], references: [id], onDelete: Restrict)
+  billingPeriodStart  DateTime
+  billingPeriodEnd    DateTime
+  dueDate             DateTime
+  subtotalAmount      Float    @default(0.0)
+  totalServiceCredits Float    @default(0.0)
+  finalPayableAmount  Float    @default(0.0)
+  paidAmount          Float    @default(0.0)
+  status              String   @default("DRAFT") // DRAFT, ISSUED, PARTIALLY_PAID, PAID, OVERDUE, VOID
+  invoiceNumber       String   @unique
+  pdfS3Key            String?
+  aiAnomalyFlagged    Boolean  @default(false)
+  aiAnomalyReason     String?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  items          BillItem[]
+  appliedCredits ServiceCompensationCredit[]
+
+  @@map("bills")
+}
+
+model BillItem {
+  id          String   @id @default(uuid())
+  billId      String
+  bill        Bill     @relation(fields: [billId], references: [id], onDelete: Cascade)
+  category    String   // BASE_RENT, ELECTRICITY_METERED, WATER_CHARGES, FOOD_MESS, MAINTENANCE, SERVICE_COMPENSATION_CREDIT, ONE_TIME_CHARGE
+  description String
+  quantity    Float    @default(1.0)
+  unitPrice   Float
+  totalAmount Float    // negative if credit deduction
+  metadata    String?  // JSON string for meter units, photos, etc.
+  createdAt   DateTime @default(now())
+
+  @@map("bill_items")
+}
+
+// =============================================================
+// 5. Complaint Management, SLAs & Rent Compensation
+// =============================================================
+
+model SlaPolicy {
+  id                     String   @id @default(uuid())
+  propertyId             String
+  property               Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  category               String   // WATER, ELECTRICITY, WIFI, AC, FOOD, HOUSEKEEPING, PLUMBING, SECURITY, OTHER
+  severity               String   // LOW, MEDIUM, HIGH, CRITICAL
+  resolutionSlaHours     Int      // e.g. 4, 24
+  compensationRatePerDay Float    @default(0.0)
+  maxCompensationCap     Float    @default(2000.0)
+  createdAt              DateTime @default(now())
+
+  @@unique([propertyId, category, severity])
+  @@map("sla_policies")
+}
+
+model Complaint {
+  id               String       @id @default(uuid())
+  ticketNumber     String       @unique // e.g. TKT-00392
+  tenancyId        String
+  tenancy          Tenancy      @relation(fields: [tenancyId], references: [id], onDelete: Restrict)
+  propertyId       String
+  property         Property     @relation(fields: [propertyId], references: [id], onDelete: Restrict)
+  assignedStaffId  String?
+  assignedStaff    StaffProfile? @relation(fields: [assignedStaffId], references: [id], onDelete: SetNull)
+  category         String       // WATER, ELECTRICITY, WIFI, AC, FOOD, HOUSEKEEPING, PLUMBING, SECURITY, OTHER
+  severity         String       // LOW, MEDIUM, HIGH, CRITICAL
+  status           String       @default("OPEN") // OPEN, ASSIGNED, IN_PROGRESS, RESOLVED, VERIFIED_CLOSED, REOPENED, CANCELLED
+  title            String
+  description      String
+  slaTargetTime    DateTime
+  actualResolvedAt DateTime?
+  isSlaBreached    Boolean      @default(false)
+  resolutionNotes  String?
+  photos           String       @default("[]") // JSON string array of photo URLs
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+
+  compensationCredit ServiceCompensationCredit?
+
+  @@map("complaints")
+}
+
+model ServiceCompensationCredit {
+  id                  String    @id @default(uuid())
+  complaintId         String    @unique
+  complaint           Complaint @relation(fields: [complaintId], references: [id], onDelete: Cascade)
+  residentId          String
+  resident            ResidentProfile @relation(fields: [residentId], references: [id], onDelete: Restrict)
+  creditAmount        Float
+  breachDurationHours Float
+  appliedToBillId     String?
+  appliedToBill       Bill?     @relation(fields: [appliedToBillId], references: [id], onDelete: SetNull)
+  createdAt           DateTime  @default(now())
+
+  @@map("service_compensation_credits")
+}
+
+// =============================================================
+// 6. Verified Feedback & Reputation
+// =============================================================
+
+model FeedbackReview {
+  id                String   @id @default(uuid())
+  tenancyId         String
+  tenancy           Tenancy  @relation(fields: [tenancyId], references: [id], onDelete: Restrict)
+  propertyId        String
+  property          Property @relation(fields: [propertyId], references: [id], onDelete: Restrict)
+  residentId        String
+  resident          ResidentProfile @relation(fields: [residentId], references: [id], onDelete: Restrict)
+  cleanlinessRating Float
+  foodRating        Float
+  wifiRating        Float
+  staffRating       Float
+  overallRating     Float
+  reviewText        String?
+  createdAt         DateTime @default(now())
+
+  @@map("feedback_reviews")
+}
+
+// =============================================================
+// 7. Double-Entry Financial Ledger
+// =============================================================
+
+model LedgerAccount {
+  id          String   @id @default(uuid())
+  accountType String   // ASSET_ESCROW, LIABILITY_DEPOSIT, RECEIVABLE_RESIDENT, REVENUE_RENT, REVENUE_UTILITIES, EXPENSE_SERVICE_COMPENSATION
+  propertyId  String?
+  residentId  String?
+  name        String
+  currency    String   @default("INR")
+  createdAt   DateTime @default(now())
+
+  debitEntries  LedgerEntry[] @relation("DebitAccount")
+  creditEntries LedgerEntry[] @relation("CreditAccount")
+
+  @@map("ledger_accounts")
+}
+
+model LedgerEntry {
+  id                  String        @id @default(uuid())
+  transactionGroupId  String
+  debitAccountId      String
+  debitAccount        LedgerAccount @relation("DebitAccount", fields: [debitAccountId], references: [id])
+  creditAccountId     String
+  creditAccount       LedgerAccount @relation("CreditAccount", fields: [creditAccountId], references: [id])
+  amount              Float
+  description         String
+  idempotencyKey      String        @unique
+  referenceEntityType String        // BILL, PAYMENT, COMPENSATION, DEPOSIT_REFUND
+  referenceEntityId   String
+  postedAt            DateTime      @default(now())
+
+  @@map("ledger_entries")
+}

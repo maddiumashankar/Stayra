@@ -155,13 +155,16 @@ The relational schema model below visualizes all primary entities, unique constr
 |---|:---:|---|---|---|
 | `users` | $1 \to 1$ | `resident_profiles` | `resident_profiles.user_id` | Generates immutable `stayra_resident_id` |
 | `users` | $1 \to 1$ | `owner_profiles` | `owner_profiles.user_id` | Enforces KYC and bank payout verification |
+| `users` | $1 \to 1$ | `staff_profiles` | `staff_profiles.user_id` | Dedicated access for maintenance electricians, plumbers, and caretakers |
 | `owner_profiles` | $1 \to N$ | `properties` | `properties.owner_id` | Properties are owned and operated by verified owners |
+| `properties` | $1 \to N$ | `staff_profiles` | `staff_profiles.assigned_property_id` | Scopes on-ground staff members to their assigned PG |
 | `properties` | $1 \to N$ | `rooms` | `rooms.property_id` | Cascades deletion if property is decommissioned |
 | `rooms` | $1 \to N$ | `beds` | `beds.room_id` | Governs atomic bed locking (`VACANT` / `OCCUPIED`) |
 | `resident_profiles` + `beds` | $1 \to N$ | `tenancies` | `resident_id`, `bed_id` | Central nexus: 1 active resident per bed at a time |
 | `tenancies` | $1 \to N$ | `bills` | `bills.tenancy_id` | Monthly billing cycle generation |
 | `bills` | $1 \to N$ | `ledger_entries` | `reference_entity_id` | Posts balanced Debit & Credit entries |
 | `tenancies` | $1 \to N$ | `complaints` | `complaints.tenancy_id` | Tracks ticket lifecycle & SLA countdown |
+| `staff_profiles` | $1 \to N$ | `complaints` | `complaints.assigned_staff_id` | Assigns maintenance tickets for resolution |
 | `complaints` | $1 \to 1$ | `service_compensation_credits` | `complaint_id` | Created when ticket breaches owner SLA policy |
 | `tenancies` | $1 \to N$ | `feedback_reviews` | `feedback_reviews.tenancy_id` | Only verified active/past residents can rate |
 
