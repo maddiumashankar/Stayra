@@ -8,40 +8,72 @@ import {
   Platform,
   Image,
   ScrollView,
+  TouchableOpacity,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { colors, typography, spacing, borderRadius, shadows } from '../../src/theme/tokens';
 import { Input, Button, Icon } from '../../src/components/common';
 import { useStayraStore } from '../../src/stores/useStayraStore';
+import { authApi } from '../../src/services/auth.api';
 
 export default function LoginScreen() {
-  const [phone, setPhone] = useState('9876543210');
+  const [email, setEmail] = useState('rohan.verma@example.com');
+  const [password, setPassword] = useState('StayraPass123!');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
-  const { setRole } = useStayraStore();
 
-  const handleSendOtp = () => {
-    if (phone.trim().length < 10) {
-      setError('Please enter a valid 10-digit mobile number');
+  const router = useRouter();
+  const { setRole, login } = useStayraStore();
+
+  const handleSignIn = async () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email.trim() || !emailRegex.test(email.trim())) {
+      setError('Please enter a valid email address');
       return;
     }
+
+    if (!password) {
+      setError('Please enter your password');
+      return;
+    }
+
     setError('');
     setLoading(true);
-    setTimeout(() => {
+
+    try {
+      const response = await authApi.signIn({
+        email: email.trim().toLowerCase(),
+        password,
+      });
+
+      setRole(response.user.role === 'OWNER' ? 'OWNER' : 'RESIDENT');
+      login(response.user);
+
+      if (response.user.role === 'OWNER') {
+        router.replace('/(owner)');
+      } else {
+        router.replace('/(resident)');
+      }
+    } catch (err: any) {
+      setError(err.message || 'Invalid email or password');
+    } finally {
       setLoading(false);
-      router.push({
-        pathname: '/(auth)/otp',
-        params: { phone },
-      } as any);
-    }, 600);
+    }
   };
 
   const handleQuickLogin = (role: 'RESIDENT' | 'OWNER') => {
-    setRole(role);
     if (role === 'OWNER') {
+      setEmail('suresh.reddy@stayra.com');
+      setPassword('StayraPass123!');
+      setRole('OWNER');
+      login({ role: 'OWNER', email: 'suresh.reddy@stayra.com', fullName: 'Suresh Reddy' });
       router.replace('/(owner)');
     } else {
+      setEmail('rohan.verma@example.com');
+      setPassword('StayraPass123!');
+      setRole('RESIDENT');
+      login({ role: 'RESIDENT', email: 'rohan.verma@example.com', fullName: 'Rohan Verma' });
       router.replace('/(resident)');
     }
   };
@@ -52,7 +84,11 @@ export default function LoginScreen() {
         style={styles.container}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       >
-        <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+        <ScrollView
+          contentContainerStyle={styles.scrollContent}
+          showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
+        >
           {/* Brand Header */}
           <View style={styles.header}>
             <Image
@@ -60,68 +96,100 @@ export default function LoginScreen() {
               style={styles.logo}
               resizeMode="contain"
             />
-            <Text style={styles.title}>Welcome to Stayra</Text>
+            <Text style={styles.title}>Welcome Back</Text>
             <Text style={styles.subtitle}>
-              Smart stays, fair rent, and automated SLA rent compensation.
+              Sign in to manage your stay, view transparent rent, or track maintenance SLAs.
             </Text>
           </View>
 
           {/* Value Props Row */}
           <View style={styles.valuePropContainer}>
             <View style={styles.valuePropItem}>
-              <Icon name="ShieldCheck" size={16} color={colors.shieldEmerald} style={{ marginRight: 6 }} />
+              <Icon name="ShieldCheck" size={14} color={colors.shieldEmerald} style={{ marginRight: 6 }} />
               <Text style={styles.valuePropText}>Zero Deposit Disputes</Text>
             </View>
             <View style={styles.valuePropItem}>
-              <Icon name="Zap" size={16} color={colors.primary} style={{ marginRight: 6 }} />
+              <Icon name="Zap" size={14} color={colors.primary} style={{ marginRight: 6 }} />
               <Text style={styles.valuePropText}>Auto Rent Credits</Text>
             </View>
             <View style={styles.valuePropItem}>
-              <Icon name="CheckCircle2" size={16} color={colors.info} style={{ marginRight: 6 }} />
+              <Icon name="CheckCircle2" size={14} color={colors.info} style={{ marginRight: 6 }} />
               <Text style={styles.valuePropText}>100% Verified PGs</Text>
             </View>
           </View>
 
           {/* Form Card */}
           <View style={styles.card}>
-            <Text style={styles.cardHeader}>Sign in or Create Account</Text>
-            <Text style={styles.cardSub}>We will send a 6-digit OTP to verify your mobile</Text>
+            <Text style={styles.cardHeader}>Sign In</Text>
+            <Text style={styles.cardSub}>Enter your email and password to access your account</Text>
+
+            {error ? (
+              <View style={styles.errorBanner}>
+                <Icon name="AlertCircle" size={16} color={colors.danger} style={{ marginRight: 8 }} />
+                <Text style={styles.errorBannerText}>{error}</Text>
+              </View>
+            ) : null}
 
             <Input
-              label="Mobile Number"
-              prefix="+91 "
-              placeholder="98765 43210"
-              keyboardType="phone-pad"
-              maxLength={10}
-              value={phone}
+              label="Email Address"
+              placeholder="e.g. rohan.verma@example.com"
+              iconLeft="Mail"
+              keyboardType="email-address"
+              autoCapitalize="none"
+              autoCorrect={false}
+              value={email}
               onChangeText={(text) => {
-                setPhone(text);
+                setEmail(text);
                 if (error) setError('');
               }}
-              error={error}
-              iconLeft="Phone"
+            />
+
+            <Input
+              label="Password"
+              placeholder="Enter your password"
+              iconLeft="Lock"
+              iconRight={showPassword ? 'EyeOff' : 'Eye'}
+              onPressRightIcon={() => setShowPassword(!showPassword)}
+              secureTextEntry={!showPassword}
+              autoCapitalize="none"
+              value={password}
+              onChangeText={(text) => {
+                setPassword(text);
+                if (error) setError('');
+              }}
             />
 
             <Button
-              title="Continue with OTP"
-              onPress={handleSendOtp}
+              title="Sign In"
+              onPress={handleSignIn}
               loading={loading}
               iconRight="ChevronRight"
               size="lg"
               style={{ marginTop: spacing.xs }}
             />
 
+            {/* Switch to Sign Up */}
+            <View style={styles.footerRow}>
+              <Text style={styles.footerText}>Don't have an account? </Text>
+              <TouchableOpacity
+                onPress={() => router.push('/(auth)/signup' as any)}
+                activeOpacity={0.7}
+              >
+                <Text style={styles.footerLink}>Sign Up</Text>
+              </TouchableOpacity>
+            </View>
+
             <Text style={styles.legalNotice}>
               By signing in, you agree to Stayra's Living Standards Agreement, Fair Rent Policy, and Privacy Terms.
             </Text>
           </View>
 
-          {/* Quick Demo Logins for Pair Programming & Review */}
+          {/* Fast Prototype Shortcuts */}
           <View style={styles.demoSection}>
-            <Text style={styles.demoSectionTitle}>FAST PROTOTYPE SHORTCUTS</Text>
+            <Text style={styles.demoSectionTitle}>FAST PROTOTYPE 1-TAP LOGIN</Text>
             <View style={styles.demoButtonsRow}>
               <Button
-                title="Resident Demo"
+                title="Rohan (Resident)"
                 onPress={() => handleQuickLogin('RESIDENT')}
                 variant="outline"
                 size="sm"
@@ -129,7 +197,7 @@ export default function LoginScreen() {
                 style={{ flex: 1 }}
               />
               <Button
-                title="PG Owner Demo"
+                title="Suresh (Owner)"
                 onPress={() => handleQuickLogin('OWNER')}
                 variant="secondary"
                 size="sm"
@@ -156,6 +224,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.lg,
     paddingTop: spacing.xl,
     paddingBottom: spacing.xxl,
+    maxWidth: 480,
+    width: '100%',
+    alignSelf: 'center',
   },
   header: {
     alignItems: 'center',
@@ -168,17 +239,17 @@ const styles = StyleSheet.create({
     marginBottom: spacing.md,
   },
   title: {
-    ...typography.heading1,
+    ...typography.heading2,
     color: colors.text,
     textAlign: 'center',
     marginBottom: 6,
   },
   subtitle: {
-    ...typography.body,
+    ...typography.bodySmall,
     color: colors.textSecondary,
     textAlign: 'center',
     maxWidth: 320,
-    lineHeight: 22,
+    lineHeight: 20,
   },
   valuePropContainer: {
     flexDirection: 'row',
@@ -204,7 +275,7 @@ const styles = StyleSheet.create({
     fontSize: 11,
   },
   card: {
-    backgroundColor: colors.surface,
+    backgroundColor: '#FFFFFF',
     borderRadius: borderRadius.xl,
     padding: spacing.xl,
     borderWidth: 1,
@@ -222,6 +293,37 @@ const styles = StyleSheet.create({
     color: colors.textSecondary,
     marginBottom: spacing.lg,
   },
+  errorBanner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.dangerLight,
+    borderWidth: 1,
+    borderColor: colors.danger,
+    borderRadius: borderRadius.md,
+    padding: spacing.sm,
+    marginBottom: spacing.md,
+  },
+  errorBannerText: {
+    ...typography.caption,
+    color: colors.danger,
+    flex: 1,
+    fontWeight: '600',
+  },
+  footerRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: spacing.lg,
+  },
+  footerText: {
+    ...typography.bodySmall,
+    color: colors.textMuted,
+  },
+  footerLink: {
+    ...typography.bodySmallMedium,
+    color: colors.primary,
+    fontWeight: '700',
+  },
   legalNotice: {
     ...typography.caption,
     color: colors.textMuted,
@@ -236,9 +338,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   demoSectionTitle: {
-    ...typography.label,
+    ...typography.caption,
+    fontWeight: '700',
     color: colors.textMuted,
     marginBottom: spacing.sm,
+    letterSpacing: 0.5,
   },
   demoButtonsRow: {
     flexDirection: 'row',

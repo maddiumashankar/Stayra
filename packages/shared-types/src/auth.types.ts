@@ -67,3 +67,23 @@ export interface VerifyOtpRequestDTO {
   otp: string;
   rolePreference?: UserRole;
 }
+
+export interface SignUpRequestDTO {
+  fullName: string;
+  email: string;
+  phoneNumber: string;
+  password: string;
+  role?: 'RESIDENT' | 'OWNER';
+}
+
+export interface SignInRequestDTO {
+  email: string;
+  password: string;
+}
+
+export interface JwtTokenPayload {
+  sub: string;
+  email: string | null;
+  role: UserRole;
+}
+

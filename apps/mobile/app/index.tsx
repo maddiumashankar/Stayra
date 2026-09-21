@@ -6,19 +6,21 @@ import { useStayraStore } from '../src/stores/useStayraStore';
 
 export default function SplashScreen() {
   const router = useRouter();
-  const { currentRole } = useStayraStore();
+  const { currentRole, isAuthenticated } = useStayraStore();
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      if (currentRole === 'OWNER') {
+      if (!isAuthenticated) {
+        router.replace('/(auth)/login');
+      } else if (currentRole === 'OWNER') {
         router.replace('/(owner)');
       } else {
         router.replace('/(resident)');
       }
-    }, 1400);
+    }, 1200);
 
     return () => clearTimeout(timeout);
-  }, [router, currentRole]);
+  }, [router, currentRole, isAuthenticated]);
 
   return (
     <View style={styles.container}>

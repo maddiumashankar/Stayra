@@ -16,6 +16,7 @@ model User {
   phoneNumber String   @unique
   email       String?  @unique
   fullName    String
+  passwordHash String?
   avatarUrl   String?
   role        String   @default("RESIDENT") // RESIDENT, OWNER, STAFF, ADMIN
   isActive    Boolean  @default(true)

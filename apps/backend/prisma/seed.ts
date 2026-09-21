@@ -1,6 +1,8 @@
 import { PrismaClient } from '@prisma/client';
+import * as bcrypt from 'bcryptjs';
 
 const prisma = new PrismaClient();
+const defaultPasswordHash = bcrypt.hashSync('StayraPass123!', 10);
 
 async function main() {
   console.log('🌱 Seeding Stayra database with high-fidelity MVP records...');
@@ -32,6 +34,7 @@ async function main() {
       fullName: 'Stayra Platform Admin',
       phoneNumber: '+919876543210',
       email: 'admin@stayra.com',
+      passwordHash: defaultPasswordHash,
       role: 'ADMIN',
       isActive: true,
     },
@@ -42,6 +45,7 @@ async function main() {
       fullName: 'Suresh Reddy',
       phoneNumber: '+919876543211',
       email: 'suresh.reddy@stayra.com',
+      passwordHash: defaultPasswordHash,
       role: 'OWNER',
       isActive: true,
       ownerProfile: {
@@ -63,6 +67,7 @@ async function main() {
       fullName: 'Vikram Malhotra',
       phoneNumber: '+919876543212',
       email: 'vikram.malhotra@stayra.com',
+      passwordHash: defaultPasswordHash,
       role: 'OWNER',
       isActive: true,
       ownerProfile: {
@@ -84,6 +89,7 @@ async function main() {
       fullName: 'Rohan Verma',
       phoneNumber: '+919876543220',
       email: 'rohan.verma@example.com',
+      passwordHash: defaultPasswordHash,
       role: 'RESIDENT',
       isActive: true,
       residentProfile: {
@@ -105,6 +111,7 @@ async function main() {
       fullName: 'Ananya Iyer',
       phoneNumber: '+919876543221',
       email: 'ananya.iyer@example.com',
+      passwordHash: defaultPasswordHash,
       role: 'RESIDENT',
       isActive: true,
       residentProfile: {
@@ -226,6 +233,7 @@ async function main() {
       fullName: 'Ramesh Kumar',
       phoneNumber: '+919876543213',
       email: 'ramesh.kumar@stayra.com',
+      passwordHash: defaultPasswordHash,
       role: 'STAFF',
       isActive: true,
       staffProfile: {
@@ -244,6 +252,7 @@ async function main() {
       fullName: 'Deepak Sharma',
       phoneNumber: '+919876543214',
       email: 'deepak.sharma@stayra.com',
+      passwordHash: defaultPasswordHash,
       role: 'STAFF',
       isActive: true,
       staffProfile: {

@@ -55,6 +55,7 @@ export type IconName =
   | 'RefreshCw'
   | 'LogOut'
   | 'Eye'
+  | 'EyeOff'
   | 'Lock'
   | 'Share2'
   | 'Plus'

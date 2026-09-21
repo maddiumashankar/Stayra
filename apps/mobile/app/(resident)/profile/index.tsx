@@ -16,7 +16,7 @@ import { useStayraStore } from '../../../src/stores/useStayraStore';
 
 export default function ProfileScreen() {
   const router = useRouter();
-  const { activeTenancy, setRole } = useStayraStore();
+  const { activeTenancy, setRole, logout } = useStayraStore();
 
   const [biometricEnabled, setBiometricEnabled] = useState(true);
   const [slaAlertsEnabled, setSlaAlertsEnabled] = useState(true);
@@ -29,7 +29,14 @@ export default function ProfileScreen() {
   const handleLogout = () => {
     Alert.alert('Sign Out', 'Are you sure you want to sign out of Stayra?', [
       { text: 'Cancel', style: 'cancel' },
-      { text: 'Sign Out', style: 'destructive', onPress: () => router.replace('/(auth)/login' as any) },
+      {
+        text: 'Sign Out',
+        style: 'destructive',
+        onPress: () => {
+          logout();
+          router.replace('/(auth)/login' as any);
+        },
+      },
     ]);
   };
 

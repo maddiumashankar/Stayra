@@ -25,6 +25,11 @@ interface SearchFilters {
 }
 
 interface StayraState {
+  isAuthenticated: boolean;
+  currentUser: any | null;
+  login: (user?: any) => void;
+  logout: () => void;
+
   currentRole: UserRole;
   setRole: (role: UserRole) => void;
 
@@ -68,6 +73,11 @@ const initialFilters: SearchFilters = {
 };
 
 export const useStayraStore = create<StayraState>((set) => ({
+  isAuthenticated: false,
+  currentUser: null,
+  login: (user) => set({ isAuthenticated: true, currentUser: user || null }),
+  logout: () => set({ isAuthenticated: false, currentUser: null }),
+
   currentRole: 'RESIDENT',
   setRole: (role) => set({ currentRole: role }),
 
